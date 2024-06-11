@@ -1,0 +1,345 @@
+/* Default styles */
+body {
+	overflow: hidden;
+}
+
+nav {
+	top: 0;
+	left: 0;
+	right: 0;
+	box-shadow: 0px 0px 15px black;
+	background-color: white;
+	height: 7%;
+	color: #333;
+	padding: 10px 0;     /* Set padding to zero on the sides */
+	width: 100%;     /* Extend the width to full */
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	position: fixed;
+	z-index: 1000;     /* Ensure it stays on top */
+}
+
+nav ul {
+	list-style-type: none;
+	margin: 0;
+	padding: 0;
+}
+
+nav ul li {
+	display: inline;
+}
+
+nav ul li:first-child {
+	margin-right: auto;
+}
+
+nav ul li a {
+	color: #333;
+	text-decoration: none;
+}
+
+.search-container {
+	display: flex;
+	align-items: center;
+	justify-content: flex-end;
+	background-color: #333333;
+	border-radius: 10px;
+	padding: 4px;
+	width: 500px;
+}
+
+.search-container input[type="text"] {
+	width: 90%;
+	padding: 6px;
+	font-family: Montserrat-Bold;
+	font-size: 15px;
+	line-height: 1.5;
+	color: #333;
+	text-transform: uppercase;
+	border: none;
+	border-radius: 5px;
+	background-color: #f2f2f2;
+}
+
+.search-container button {
+	padding: 6px;
+	background: transparent;
+	border: none;
+	cursor: pointer;
+	transition: all 0.4s;
+}
+
+.search-container button i {
+	font-size: 15px;
+	color: #fff;
+}
+
+.icon-buttons {
+	display: flex;
+	align-items: center;
+}
+
+.icon-buttons button {
+	background: transparent;
+	border: none;
+	cursor: pointer;
+	margin-right: 10px;
+}
+
+.icon-buttons button i {
+	font-size: 20px;
+	color: #333;
+}
+
+.brand {
+	display: flex;
+	align-items: center;
+}
+
+.brand-text {
+	margin-left: 10px;
+	font-size: 20px;
+	font-weight: bold;
+	margin-right: -1px;
+	flex-grow: -10px;
+}
+
+.services-button {
+	background-color: #333333;
+	color: #ffffff;
+	padding: 10px 20px;
+	border-radius: 5px;
+	text-decoration: none;
+}
+
+.services-button:hover {
+	background-color: #555555;
+}
+
+/* Media queries for responsiveness */
+@media only screen and (max-width:768px) {
+	nav {
+		flex-direction: column;
+		align-items: center;
+		height: auto;
+		padding: 20px;
+		width: 100%;
+	}
+
+	nav ul {
+		margin-top: 20px;
+	}
+
+	.search-container {
+		width: 100%;
+		margin-top: 20px;
+		justify-content: center;
+	}
+
+	.search-container input[type="text"] {
+		width: 80%;
+	}
+
+	.services-button {
+		margin-left: 0;
+		margin-top: 20px;
+	}
+
+}
+
+@media only screen and (max-width:500px) {
+	.search-container {
+		width: 100%;
+	}
+
+}
+
+/* LIST AND DASHBOARD CSS */
+ul.no-bullets {
+	padding-top: 10px;
+	padding-bottom: 5px;
+	list-style-type: none;
+	padding-left: 0;
+}
+
+ul.no-bullets li {
+	display: flex;
+	align-items: center;     /* Centers the items vertically */
+	margin-bottom: 10px;
+}
+
+ul.no-bullets li i {
+	width: 30px;     /* Ensures all icons have the same width */
+	text-align: center;     /* Centers the icons if they are smaller than the width */
+	margin-right: 10px;     /* Space between the icon and the text */
+}
+
+.no-bullets {
+	list-style-type: none;
+	padding: 0;
+	margin: 0;
+}
+
+.no-bullets li {
+	margin-bottom: 10px;     /* Space between buttons */
+}
+
+.no-bullets a {
+	display: block;
+	width: 100%;
+	padding: 10px;
+	text-align: left;
+	color: inherit;
+	border: none;
+	font-size: 16px;
+	text-decoration: none;     /* Removes underline from links */
+	cursor: pointer;
+}
+
+.no-bullets a:hover {
+	background-color: black;     /* Slightly darker blue on hover */
+	color: white;
+}
+
+.no-bullets a i {
+	margin-right: 10px;
+}
+
+.root {
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background: #9053c7;
+	background: -webkit-linear-gradient(-135deg, #c850c0, #4158d0);
+	background: -o-linear-gradient(-135deg, #c850c0, #4158d0);
+	background: -moz-linear-gradient(-135deg, #c850c0, #4158d0);
+	background: linear-gradient(-135deg, #c850c0, #4158d0);
+	display: flex;     /* Example to layout children, adjust as needed */
+	justify-content: center;     /* Center children horizontally */
+	overflow: auto;     /* Allows scrolling inside .root if content overflows */
+	position: absolute;
+	margin-top: 3.37%;
+	align-items: stretch;     /* This will ensure they align to the same height automatically */
+}
+
+.dashboard {
+	margin-top: 10px;
+	box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px, rgb(51, 51, 51) 0px 0px 0px 3px;
+	width: 20%;
+	background-color: white;
+	color: black;
+	height: 300px;     /* Adjust if necessary */
+	margin-left: 30px;     /* Only left margin to create some space from the edge */
+	margin-right: 10px;
+}
+
+/* THE RIGHT DIV */
+.userContent {
+	margin-top: 10px;
+	flex-grow: 1;     /* Takes up the remaining space */
+	margin-right: 30px;
+	font-family: Arial, sans-serif;     /* background-color: #FFFFFF; */
+	color: #333;
+}
+
+.container {
+	max-height: 600px;
+	background-color: white;
+	margin: auto;
+	padding: 20px;
+	box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px, rgb(51, 51, 51) 0px 0px 0px 3px;
+}
+
+h2 {
+	margin-bottom: 20px;
+	color: black;
+	font-weight: bold;
+}
+
+.form-group {
+	margin-bottom: 15px;
+	display: flex;
+	align-items: center;
+}
+
+.data-label {
+	font-weight: bold;
+	width: 30%;     /* Adjust width here to manage the space */
+}
+
+.data-value {
+	width: 70%;     /* Adjust width here to manage content */
+	display: block;     /* Ensure this spans the full width */
+	padding-left: 20px;     /* Adjust padding to increase space */
+}
+
+.notification {
+	color: red;
+	font-weight: bold;
+}
+
+iframe{
+	max-height: 500px;
+}
+/*  */
+
+
+
+@media only screen and (max-width: 700px) {
+	.dashboard {
+	  width: 100%; /* Adjust width to occupy full width on smaller screens */
+	
+	  margin-top: 400px; /* Add margin between list and container */
+
+	}
+	
+	.userContent {
+	  margin-top: 20px; /* Move user content below the list */
+	  margin-right: 10px; /* Adjust margin for spacing */
+	}
+  
+	.container {
+	  padding: 10px; 
+	  width: 450px;
+	}
+  
+	h2 {
+	  font-size: 18px; /* Adjust font size for headings */
+	  margin-bottom: 15px; /* Adjust margin for spacing */
+	}
+  
+	.form-group {
+	  flex-direction: column; /* Stack form groups vertically */
+	  align-items: flex-start; /* Align items to the start */
+	  margin-bottom: 20px; /* Adjust margin for spacing */
+	}
+  
+	.data-label {
+	  width: 100%; /* Make data label span full width */
+	  margin-bottom: 5px; /* Adjust margin for spacing */
+	}
+  
+	.data-value {
+	  width: 100%; /* Make data value span full width */
+	}
+  
+	iframe {
+	  max-width: 100%; /* Ensure iframes adapt to smaller screens */
+	}
+
+  	  
+	.brand-text {
+	  font-size: 18px; /* Adjust font size for brand text */
+	}
+  
+
+  
+	.root {
+	  flex-direction: column; /* Stack root elements vertically */
+	  align-items: center; /* Center root elements horizontally */
+	}
+  
+
+  }
+  

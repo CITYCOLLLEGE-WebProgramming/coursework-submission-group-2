@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thank You</title>
+
+<style media="screen">
+/* styles/thankYou.css */
+
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: linear-gradient(-135deg, #c850c0, #4158d0);
+}
+
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
+
+.thank-you-box {
+	background: #fff;
+
+  padding: 40px;
+  text-align: center;
+  border-radius: 8px;
+  box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px, rgb(51, 51, 51) 0px 0px 0px 3px;
+
+}
+
+h1 {
+  font-size: 24px;
+  margin-bottom: 20px;
+}
+
+p {
+  font-size: 16px;
+  margin-top: 20px;
+}
+
+</style>
+
+<script>
+   // Redirect to the user order history page after 3 seconds
+   setTimeout(function() {
+       window.location.href = '/userOrderHistory';
+   }, 3000);
+</script>
+</head>
+<body>
+<div class="container">
+   <div class="thank-you-box">
+       <h1>Thank You for Your Purchase!</h1>
+       <p>You will be redirected to your order history shortly.</p>
+   </div>
+</div>
+</body>
+</html>

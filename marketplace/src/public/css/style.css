@@ -1,0 +1,103 @@
+/* * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+} */
+body {
+	font-family: 'Poppins', sans-serif;
+	height: 100vh;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	background: #9053c7;
+	overflow: hidden;
+	background: -webkit-linear-gradient(-135deg, #c850c0, #4158d0);
+	background: -o-linear-gradient(-135deg, #c850c0, #4158d0);
+	background: -moz-linear-gradient(-135deg, #c850c0, #4158d0);
+	background: linear-gradient(-135deg, #c850c0, #4158d0);
+	background-size: cover;
+}
+
+h2 {
+	text-align: center;
+	margin-bottom: 30px;
+}
+
+.form-container {
+	background-color: white;
+	box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px, rgb(51, 51, 51) 0px 0px 0px 3px;
+	width: 300px;
+	margin: 0 auto;
+	padding: 20px;
+	border: 1px solid #ccc;
+	border-radius: 5px;
+}
+
+.form-group {
+	position: relative;
+	margin-bottom: 15px;
+}
+
+.form-group label {
+	display: block;
+	font-weight: bold;
+	margin-bottom: 3px;
+}
+
+.form-group input {
+	width: 93.5%;
+	padding: 8px;
+	font-size: 16px;
+	border: 1px solid #ccc;
+	border-radius: 3px;
+}
+
+.submit-btn {
+	display: block;
+	width: 100%;
+	padding: 10px;
+	background-color: #472dbb;
+	color: #fff;
+	border: none;
+	border-radius: 5px;
+	cursor: pointer;
+}
+
+.submit-btn:hover {
+	background-color: #4565a0;
+}
+
+p {
+	margin-top: 15px;
+}
+
+input:invalid {
+	border: 2px solid #500ab3;
+}
+
+input:valid {
+	border: 2px solid green;
+}
+
+.eye {
+	position: absolute;
+	top: 70%;
+	right: 10px;
+	transform: translateY(-50%);
+	cursor: pointer;
+	font-size: 16px;
+	color: #333;
+}
+
+#backButton:hover {
+	color: #4A44D8;     /* Adjust color to match the theme */
+	text-decoration: underline;     /* Adds underline on hover */
+}
+
+#backButton {
+	border: none;
+	background: none;
+	color: black;     /* Adjust color to match your design */
+	font-size: 16px;     /* Adjust font size as needed */
+	cursor: pointer;
+}

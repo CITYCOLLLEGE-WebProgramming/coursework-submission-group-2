@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/navigation.css">
+    <link rel="stylesheet" href="/css/footer.css">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="/public/fonts/font-awesome-4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    \
+    <title>ScriptSeller Business Card</title>
+    <style>
+
+    /* Styles for the entire page's scrollbar */
+    body::-webkit-scrollbar {
+    	width: 10px; /* Adjust the width of the scrollbar */
+    }
+
+    body::-webkit-scrollbar-track {
+    	-webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3); /* Shadow inside the track */
+    	border-radius: 10px; /* Optional: Rounded corners of the track */
+    	background: transparent; /* Color of the scrollbar track */
+    }
+
+    body::-webkit-scrollbar-thumb {
+    	background: linear-gradient(to top, #8843f4, hwb(252 3% 43%)); /* Gradient color for the scrollbar */
+    	border-radius: 10px; /* Rounded corners of the scrollbar */
+    }
+
+    body::-webkit-scrollbar-thumb:hover {
+    	background: linear-gradient(to top, #6622cc, #32c8b8); /* Darker gradient color on hover */
+    }
+
+        .cardB{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+
+            font-family: Arial, sans-serif;
+        }
+        .business-card {
+            width: 350px;
+            height: 400px;
+            background-color: #ffffff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+        .business-card h1 {
+
+            margin: 0;
+            font-size: 24px;
+            color: #333;
+        }
+        .business-card p {
+            margin: 5px 0;
+            font-size: 16px;
+            color: #555;
+        }
+        .business-card .logo {
+            margin-bottom: 10px;
+        }
+        .business-card .contact-info {
+            text-align: center;
+        }
+        .business-card .contact-info a {
+            color: blue;
+            text-decoration: none;
+        }
+        .business-card .contact-info a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+  <nav>
+    <a href="/HomePage">
+      <div class="brand-text">
+        <img src="/images/logo.png" alt="Logo">
+        <p id="logoTitle">SCRIPT SELLER</p>
+      </div>
+    </a>
+
+    <div class="search-container">
+      <form id="searchForm" action="/HomePage" method="get">
+        <button id="icon" type="submit"><i class="fa fa-search"></i></button>
+        <input type="text" name="search" placeholder="Search for products...">
+      </form>
+    </div>
+
+    <div class="icon-buttons">
+      <a href="/userProfile"><button><i class="fas fa-user"></i></button></a>
+      <a href="/cart"><button><i class="fas fa-shopping-cart"></i></button></a>
+      <a href="/userFavorite"><button><i class="fas fa-heart"></i></button></a>
+    </div>
+  </nav>
+
+  <div class="root">
+<div class="cardB">
+
+    <div class="business-card">
+        <div class="logo">
+          <!-- <img src="/images/logo.png" alt="Logo"> -->
+            <img src="/images/logo.png" alt="ScriptSeller Logo" width="100">
+        </div>
+        <h1>ScriptSeller</h1>
+        <div class="contact-info">
+            <p><strong>Name:</strong> CEO NAME</p>
+            <p><strong>Title:</strong> CEO</p>
+            <p><strong>Email:</strong> <a href="mailto:john.doe@scriptseller.com">ceo@scriptseller.com</a></p>
+            <p><strong>Phone:</strong> (123) 456-7890</p>
+            <p><strong>Website:</strong> <a href="https://www.scriptseller.com" target="_blank">www.scriptseller.com</a></p>
+        </div>
+    </div>
+
+  </div>
+
+  </div>
+  <footer class="footer">
+    <div class="container">
+      <div class="row">
+        <div class="footer-col">
+          <h4>company</h4>
+          <ul>
+            <li><a href="/aboutUs">about us</a></li>
+            <li><a href="/ourServices">our services</a></li>
+            <li><a href="/policy  ">privacy policy</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>get help</h4>
+          <ul>
+            <li><a href="/helpCenter">FAQ</a></li>
+            <li><a href="/chatSupport">Chat Support</a></li>
+            <li><a href="/userOrderHistory">Your Order</a></li>
+            <li><a href="/userWallet">payment options</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Script-Sellers Payment</h4>
+          <ul>
+            <li><a href="/businessCard">Script-Sellers Business Card</a></li>
+            <li><a href="/productInformation">Your Wallet</a></li>
+
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>follow us</h4>
+          <div class="social-links">
+            <a href="https://www.facebook.com"><i class="fab fa-facebook-f"></i></a>
+            <a href="https://twitter.com"><i class="fab fa-twitter"></i></a>
+            <a href="https://instagram.com"><i class="fab fa-instagram"></i></a>
+            <a href="https://www.linkedin.com"><i class="fab fa-linkedin-in"></i></a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>

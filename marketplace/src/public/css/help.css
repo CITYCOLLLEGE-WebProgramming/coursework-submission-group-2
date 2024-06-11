@@ -1,0 +1,299 @@
+/* Default styles */
+body {
+	overflow: hidden;
+}
+
+
+/* LIST AND DASHBOARD CSS */
+ul.no-bullets {
+	padding-top: 10px;
+	padding-bottom: 5px;
+	list-style-type: none;
+	padding-left: 0;
+}
+
+ul.no-bullets li {
+	display: flex;
+	align-items: center;     /* Centers the items vertically */
+	margin-bottom: 10px;
+}
+
+ul.no-bullets li i {
+	width: 30px;     /* Ensures all icons have the same width */
+	text-align: center;     /* Centers the icons if they are smaller than the width */
+	margin-right: 10px;     /* Space between the icon and the text */
+}
+
+.no-bullets {
+	list-style-type: none;
+	padding: 0;
+	margin: 0;
+}
+
+.no-bullets li {
+	margin-bottom: 10px;     /* Space between buttons */
+}
+
+.no-bullets a {
+	display: block;
+	width: 100%;
+	padding: 10px;
+	text-align: left;
+	color: inherit;
+	border: none;
+	font-size: 16px;
+	text-decoration: none;     /* Removes underline from links */
+	cursor: pointer;
+}
+
+.no-bullets a:hover {
+	background-color: black;     /* Slightly darker blue on hover */
+	color: white;
+}
+
+.no-bullets a i {
+	margin-right: 10px;
+}
+
+.root {
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background: #9053c7;
+	background: -webkit-linear-gradient(-135deg, #c850c0, #4158d0);
+	background: -o-linear-gradient(-135deg, #c850c0, #4158d0);
+	background: -moz-linear-gradient(-135deg, #c850c0, #4158d0);
+	background: linear-gradient(-135deg, #c850c0, #4158d0);
+	display: flex;     /* Example to layout children, adjust as needed */
+	justify-content: center;     /* Center children horizontally */
+	overflow: auto;     /* Allows scrolling inside .root if content overflows */
+	position: absolute;
+	margin-top: 3.37%;
+	align-items: stretch;     /* This will ensure they align to the same height automatically */
+}
+
+.dashboard {
+	margin-top: 10px;
+	box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px, rgb(51, 51, 51) 0px 0px 0px 3px;
+	width: 20%;
+	background-color: white;
+	color: black;
+	height: 300px;     /* Adjust if necessary */
+	margin-left: 30px;     /* Only left margin to create some space from the edge */
+	margin-right: 10px;
+}
+
+/* THE RIGHT DIV */
+.userContent {
+	margin-top: 10px;
+	flex-grow: 1;     /* Takes up the remaining space */
+	margin-right: 30px;
+	font-family: Arial, sans-serif;
+	color: #333;
+}
+
+h2 {
+	margin-top: 20px;
+	margin-left: 20px;
+	margin color: black;
+	font-weight: bold;
+}
+
+.form-group {
+	margin-bottom: 15px;
+	display: flex;
+	align-items: center;
+}
+
+.data-label {
+	font-weight: bold;
+	width: 30%;     /* Adjust width here to manage the space */
+}
+
+.data-value {
+	width: 70%;     /* Adjust width here to manage content */
+	display: block;     /* Ensure this spans the full width */
+	padding-left: 20px;     /* Adjust padding to increase space */
+}
+
+.notification {
+	color: red;
+	font-weight: bold;
+}
+
+.container {
+	vertical-align: middle;
+	font-family: Arial, sans-serif;
+	background-color: white;
+	display: flex;
+	box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px, rgb(51, 51, 51) 0px 0px 0px 3px;
+	flex-wrap: wrap;
+}
+
+.help-container {
+	font-family: Arial, sans-serif;
+	display: flex;
+	justify-content: center;
+	width: 100%;     /* Adjust based on your layout needs */
+	background: white;
+}
+
+.help-card {
+	background-color: #fff;
+	border: 1px solid #ddd;
+	border-radius: 8px;
+	padding: 20px;
+	box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+	width: 300px;     /* Adjust width as needed */
+	margin: 20px;
+}
+
+.help-card h3 {
+	margin-top: 0;
+	color: #333;
+}
+
+.help-card p {
+	font-size: 14px;
+	color: #666;
+	margin-bottom: 20px;
+}
+
+.help-link {
+	color: #007BFF;
+	text-decoration: none;
+	font-weight: bold;
+	display: inline-block;     /* Keeps the icon aligned with the text */
+}
+
+.help-link i {
+	margin-left: 5px;     /* Space between text and icon */
+}
+
+.chat-card {
+	background-color: #fff;
+	border: 1px solid #ddd;
+	border-radius: 8px;
+	padding: 20px;
+	box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+	width: 250px;     /* Adjust width as needed */
+	margin: 20px auto;     /* Centering the card */
+	text-align: center;
+}
+
+.chat-card h3 {
+	margin-top: 0;
+	color: #333;
+	font-size: 18px;
+}
+
+.chat-card p {
+	font-size: 14px;
+	color: #666;
+	margin-bottom: 20px;
+}
+
+.chat-link {
+	margin-top: 16.5px;
+	color: #007BFF;
+	text-decoration: none;
+	font-weight: bold;
+	display: inline-block;     /* Keeps the icon aligned with the text */
+	font-size: 16px;
+}
+
+.chat-link i {
+	margin-left: 5px;     /* Space between text and icon */
+}
+
+.question-card {
+	background-color: #fff;
+	border: 1px solid #ddd;
+	border-radius: 8px;
+	padding: 20px;
+	box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+	width: 250px;     /* Adjust width as needed */
+	margin: 20px auto;     /* Centering the card */
+	text-align: center;
+}
+
+.question-card h3 {
+	margin-top: 0;
+	color: #333;
+	font-size: 18px;
+}
+
+.question-card p {
+	font-size: 14px;
+	color: #666;
+	margin-bottom: 20px;
+}
+
+/*  */
+@media only screen and (max-width: 700px) {
+	.dashboard {
+	  width: 100%;
+	  margin-top: 250px;
+	  margin-right: 150px;
+	}
+  
+	.userContent {
+	  margin-bottom: 20px;
+	  margin-right: 10px;
+	}
+  
+	.container {
+	  padding: 10px;
+	}
+  
+	h2 {
+	  margin-top: 20px;
+	  margin-left: 20px;
+	  color: black;
+	  font-weight: bold;
+	}
+  
+	.form-group {
+	  margin-bottom: 15px;
+	  display: flex;
+	  flex-direction: column;
+	  align-items: flex-start;
+	}
+  
+	.data-label {
+	  width: 100%;
+	  margin-bottom: 5px;
+	}
+  
+	.data-value {
+	  width: 100%;
+	}
+  
+	.root {
+	  flex-direction: column;
+	}
+  
+	.no-bullets {
+	  order: 2; /* Place the list after the help container */
+	}
+  
+	
+  
+	.help-container {
+	  order: 3; /* Place the help container at the bottom */
+	  width: 100%;
+	}
+  
+	.help-card,
+	.chat-card,
+	.question-card {
+	  width: 90%;
+	  margin: 20px 0;
+	}
+  
+	.chat-card,
+	.question-card {
+	  width: 100%;
+	}
+  }
+  

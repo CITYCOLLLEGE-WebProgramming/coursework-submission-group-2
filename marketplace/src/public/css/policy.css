@@ -1,0 +1,119 @@
+body::-webkit-scrollbar {
+	width: 10px; /* Adjust the width of the scrollbar */
+}
+
+body::-webkit-scrollbar-track {
+	-webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3); /* Shadow inside the track */
+	border-radius: 10px; /* Optional: Rounded corners of the track */
+	background: transparent; /* Color of the scrollbar track */
+}
+
+body::-webkit-scrollbar-thumb {
+	background: linear-gradient(to top, #8843f4, hwb(252 3% 43%)); /* Gradient color for the scrollbar */
+	border-radius: 10px; /* Rounded corners of the scrollbar */
+}
+
+body::-webkit-scrollbar-thumb:hover {
+	background: linear-gradient(to top, #6622cc, #32c8b8); /* Darker gradient color on hover */
+}
+
+
+.root {
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background: #9053c7;
+	background: -webkit-linear-gradient(-135deg, #c850c0, #4158d0);
+	background: -o-linear-gradient(-135deg, #c850c0, #4158d0);
+	background: -moz-linear-gradient(-135deg, #c850c0, #4158d0);
+	background: linear-gradient(-135deg, #c850c0, #4158d0);
+	display: flex;     /* Example to layout children, adjust as needed */
+	justify-content: center;     /* Center children horizontally */
+	overflow: auto;     /* Allows scrolling inside .root if content overflows */
+	position: relative;     /* or 'fixed' depending on your layout needs */
+	z-index: 1;
+	margin-top: 3.37%;
+	align-items: stretch;     /* This will ensure they align to the same height automatically */
+}
+
+.privacy-policy {
+	height: 100%;     /* Add or adjust this line */
+	width: 1200px;
+	margin: 20px auto;
+	padding: 20px;
+	background: #fff;
+	border-radius: 8px;
+	box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px, rgb(51, 51, 51) 0px 0px 0px 3px;
+}
+
+.privacy-policy h1, .privacy-policy h2 {
+	color: #333;
+}
+
+.privacy-policy p, .privacy-policy li {
+	margin-left: 10px;
+	color: #666;
+	line-height: 1.6;
+}
+
+
+
+
+@media only screen and (max-width: 600px) {
+    .root {
+		margin-top: 70px;
+    }
+
+    .privacy-policy {
+        padding: 10px;
+        margin: 20px 10px 10px 10px; 
+    }
+
+    .privacy-policy h1, .privacy-policy h2 {
+        font-size: 1.5em;
+    }
+
+    .privacy-policy p, .privacy-policy li {
+        margin-left: 5px;
+        font-size: 0.9em;
+    }
+}
+
+@media only screen and (min-width: 600px) and (max-width: 1024px) {
+    
+	.root {
+		margin-top: 70px;
+    }
+
+
+	.privacy-policy {
+
+        padding: 15px;
+        margin: 15px;
+    }
+
+    .privacy-policy h1, .privacy-policy h2 {
+        font-size: 1.75em;
+    }
+
+    .privacy-policy p, .privacy-policy li {
+        margin-left: 7px;
+        font-size: 1em;
+    }
+}
+
+@media only screen and (min-width: 1024px) {
+    .privacy-policy {
+        padding: 20px;
+    
+    }
+
+    .privacy-policy h1, .privacy-policy h2 {
+        font-size: 2em;
+    }
+
+    .privacy-policy p, .privacy-policy li {
+        margin-left: 10px;
+        font-size: 1.1em;
+    }
+}

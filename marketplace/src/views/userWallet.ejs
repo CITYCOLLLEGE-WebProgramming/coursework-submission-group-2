@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" type="text/css" href="/css/wallet.css">
+  <link rel="stylesheet" href="/css/navigation.css">
+  <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" type="text/css" href="/public/fonts/font-awesome-4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+  <script>
+    function showAddCardForm() {
+      document.getElementById('addCardForm').style.display = 'block';
+    }
+
+    function showEditForm() {
+      document.getElementById('editForm').style.display = 'block';
+    }
+
+    function hideEditForm() {
+      document.getElementById('editForm').style.display = 'none';
+    }
+
+    function deleteCard(cardId) {
+      if (confirm("Are you sure you want to delete this card?")) {
+        fetch('/deleteCard', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({ cardId: cardId })
+        })
+        .then(response => response.json())
+        .then(data => {
+          console.log('Response data:', data); // Debugging: Log response data
+          if (data.success) {
+            alert("Card deleted successfully.");
+            location.reload(); // Reload the page
+          } else {
+            alert("Failed to delete card: " + data.message);
+          }
+        })
+        .catch(error => {
+          console.error('Error:', error);
+          alert("An error occurred while deleting the card.");
+        });
+      }
+    }
+
+    function toggleCardNumberVisibility(element) {
+      const cardNumberElement = element.previousElementSibling;
+      const originalNumber = cardNumberElement.getAttribute('data-card-number');
+      if (cardNumberElement.textContent.includes('*')) {
+        cardNumberElement.textContent = originalNumber;
+        element.textContent = 'Hide';
+      } else {
+        const maskedNumber = originalNumber.replace(/^(.{4})(.{4})(.{4})/, '**** **** **** ');
+        cardNumberElement.textContent = maskedNumber;
+        element.textContent = 'Show';
+      }
+    }
+  </script>
+  <style>
+    .tooltip {
+      display: inline-block;
+      position: relative;
+    }
+
+    .tooltip .tooltiptext {
+      visibility: hidden;
+      width: 220px;
+      background-color: black;
+      color: #fff;
+      text-align: center;
+      border-radius: 6px;
+      padding: 5px;
+      position: absolute;
+      z-index: 1;
+      bottom: 125%; /* Position the tooltip above the text */
+      left: 50%;
+      margin-left: -110px;
+      opacity: 0;
+      transition: opacity 0.3s;
+    }
+
+    .tooltip:hover .tooltiptext {
+      visibility: visible;
+      opacity: 1;
+    }
+
+    .card-logo {
+      position: absolute;
+      bottom: 10px;
+      left: 10px;
+      width: 50px;
+    }
+
+    .card {
+      position: relative;
+    }
+  </style>
+</head>
+
+<body>
+  <nav>
+    <a href="/HomePage">
+      <div class="brand-text">
+        <img src="/images/logo.png" alt="Logo">
+        <p id="logoTitle">SCRIPT SELLER</p>
+      </div>
+    </a>
+
+    <div class="search-container">
+      <form id="searchForm" action="/HomePage" method="get">
+        <button id="icon" type="submit"><i class="fa fa-search"></i></button>
+        <input type="text" name="search" placeholder="Search...">
+      </form>
+    </div>
+    <div class="icon-buttons">
+      <a href="/userProfile"><button><i class="fas fa-user"></i></button></a> <!-- Profile icon -->
+      <a href="/cart"><button><i class="fas fa-shopping-cart"></i></button></a> <!-- Shopping cart icon -->
+      <a href="/userFavorite"><button><i class="fas fa-heart"></i></button></a> <!-- Heart icon -->
+    </div>
+  </nav>
+
+  <div class="root">
+    <!-- LEFT DIV -->
+    <div class="dashboard">
+      <ul class="no-bullets">
+        <li><a href="/userProfile"><i class="fa fa-user" aria-hidden="true"></i> My account</a></li>
+        <li><a href="/userWallet"> <i class="fa fa-university" aria-hidden="true"></i> Wallet</a></li>
+        <li><a href="/userOrderHistory"> <i class="fa fa-history" aria-hidden="true"></i> Order History</a></li>
+        <li><a href="/userHelp"> <i class="fa fa-info" aria-hidden="true"></i> Help</a></li>
+        <li><a href="/settings"><i class="fa fa-cog" aria-hidden="true"></i> Settings</a></li>
+        <li><a href="/login"> <i class="fa fa-lock"></i>Logout</a></li>
+      </ul>
+    </div>
+
+    <!-- RIGHT DIV -->
+    <div class="userContent">
+      <div class="container">
+        <div class="section">
+          <span class="title">Your Credit Cards</span>
+        </div>
+        <div class="cardContainer">
+          <% if (user.cards && user.cards.length > 0) { %>
+            <% user.cards.forEach(card => { %>
+              <div class="card">
+                <div class="card-field">
+                  <label>Card Number:</label>
+                  <span data-card-number="<%= card.cardNumber %>">**** **** **** <%= card.cardNumber.slice(-4) %></span>
+                </div>
+                <div class="card-field">
+                  <label>Card Holder Name:</label>
+                  <span><%= card.cardName %></span>
+                </div>
+                <div class="card-field">
+                  <label>Expiration Date:</label>
+                  <span><%= card.expiryDate %></span>
+                </div>
+                <div class="card-field">
+                  <label>CVV:</label>
+                  <span><%= card.cvv %></span>
+                </div>
+                <div class="button-group">
+                  <button class="remove-button" onclick="deleteCard('<%= card._id %>')">
+                    <i class="fa fa-minus-square"></i>
+                  </button>
+                </div>
+                <% if (card.cardNumber.startsWith('4')) { %> <!-- Visa cards start with 4 -->
+                  <img src="https://upload.wikimedia.org/wikipedia/commons/4/41/Visa_Logo.png" alt="Visa Logo" class="card-logo">
+                <% } else if (card.cardNumber.startsWith('5')) { %> <!-- MasterCard cards start with 5 -->
+                  <img src="https://upload.wikimedia.org/wikipedia/commons/2/2a/Mastercard-logo.svg" alt="MasterCard Logo" class="card-logo">
+                <% } %>
+              </div>
+            <% }) %>
+          <% } else { %>
+            <p>No credit cards added.</p>
+          <% } %>
+        </div>
+        <% if (user.cards.length < 3) { %>
+          <a href="/addCredit"><button class="add-card-button">Add Credit Card</button></a>
+        <% } else { %>
+          <div class="button-container2 tooltip">
+            <button class="add-card-button2">Add Credit Card</button>
+            <div class="tooltiptext">Sorry, you can't have more than 3 cards</div>
+          </div>
+        <% } %>
+      </div>
+
+      <div id="editForm" style="display:none;">
+        <form action="/editCards" method="post">
+          <% user.cards.forEach((card, index) => { %>
+            <div class="edit-card">
+              <h3>Edit Card <%= index + 1 %></h3>
+              <input type="hidden" name="cardId" value="<%= card._id %>">
+              <label for="cardNumber-<%= index %>">Card Number:</label>
+              <input type="text" id="cardNumber-<%= index %>" name="cardNumber" value="<%= card.cardNumber %>" required>
+              <label for="cardName-<%= index %>">Card Holder Name:</label>
+              <input type="text" id="cardName-<%= index %>" name="cardName" value="<%= card.cardName %>" required>
+              <label for="expiryDate-<%= index %>">Expiration Date:</label>
+              <input type="text" id="expiryDate-<%= index %>" name="expiryDate" value="<%= card.expiryDate %>" required>
+              <label for="cvv-<%= index %>">CVV:</label>
+              <input type="text" id="cvv-<%= index %>" name="cvv" value="<%= card.cvv %>" required>
+              <button type="button" onclick="deleteCard('<%= card._id %>')">Delete</button>
+            </div>
+          <% }) %>
+          <button type="submit">Submit</button>
+          <button type="button" onclick="hideEditForm()">Cancel</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

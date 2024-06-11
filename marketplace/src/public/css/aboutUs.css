@@ -1,0 +1,170 @@
+body {
+	font-family: Arial, sans-serif;
+	background-color: #f0f0f0;
+	color: #333;
+}
+
+.content {
+	padding: 20px;
+	padding-top: 7%;
+	padding-bottom: 4%;
+	max-width: 900px;
+	margin: 0 auto;
+	position: relative;
+}
+
+.about-us {
+	background: rgba(255, 255, 255, 0.9);
+	padding: 20px;
+	border-radius: 15px;
+	box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+	position: relative;
+	z-index: 1;
+}
+
+.about-us h1, .about-us h2 {
+	color: #1a1a1a;
+	font-family: 'Helvetica Neue', sans-serif;
+	font-weight: bold;
+}
+
+.about-us p, .about-us ul {
+	font-size: 16px;
+	line-height: 1.6;
+	font-family: 'Helvetica Neue', sans-serif;
+}
+
+.about-us ul {
+    padding: 0;
+    list-style-type: none; /* Removes default bullet points */
+}
+
+.about-us ul li {
+    padding-left: 0; /* Adjusted since no custom bullet */
+    text-indent: 0;  /* Adjusted since no custom bullet */
+    position: relative;
+}
+
+
+
+
+@keyframes float {
+	0%, 100% {
+		transform: translateY(0);
+	}
+	50% {
+		transform: translateY(-20px);
+	}
+}
+
+.bubble1 {
+	width: 200px;
+	height: 200px;
+	bottom: 10%;
+	left: 5%;
+}
+
+.bubble2 {
+	width: 300px;
+	height: 300px;
+	top: 10%;
+	right: 10%;
+}
+
+.bubble3 {
+	width: 150px;
+	height: 150px;
+	bottom: 5%;
+	right: 20%;
+}
+
+.bubble4 {
+	width: 250px;
+	height: 250px;
+	top: 20%;
+	left: 15%;
+}
+
+/*--------------------------------------*/
+/* SCROLLBAR */
+/*--------------------------------------*/
+
+body::-webkit-scrollbar {
+	width: 10px;     /* Adjust the width of the scrollbar */
+}
+
+body::-webkit-scrollbar-track {
+	-webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);     /* Shadow inside the track */
+	border-radius: 10px;     /* Optional: Rounded corners of the track */
+	background: transparent;     /* Color of the scrollbar track */
+}
+
+body::-webkit-scrollbar-thumb {
+	background: linear-gradient(to top, #8843f4, hwb(252 3% 43%));     /* Gradient color for the scrollbar */
+	border-radius: 10px;     /* Rounded corners of the scrollbar */
+}
+
+body::-webkit-scrollbar-thumb:hover {
+	background: linear-gradient(to top, #6622cc, #32c8b8);     /* Darker gradient color on hover */
+}
+
+
+#firstList {
+	border-top: 1px solid #ccc;
+}
+
+
+
+
+
+
+@media (max-width: 1200px) {
+	.content {
+		margin-top: 60px;
+		margin-left: 20px;
+	}
+	
+}
+
+@media (max-width: 992px) {
+	.navbar {
+		width: 150px;
+	}
+
+}
+
+@media (max-width: 768px) {
+	.content {
+		padding-left: 0;
+	}
+
+}
+
+@media (max-width: 576px) {
+	.about-us {
+		padding: 10px;
+	}
+	.about-us h1, .about-us h2 {
+		font-size: 1.5em;
+	}
+	.about-us p, .about-us ul {
+		font-size: 14px;
+	}
+	.product-box {
+		padding: 5px;
+	}
+	.CartBtn {
+		width: 120px;
+		height: 35px;
+	}
+	.CartBtn .text {
+		font-size: 0.9em;
+	}
+}
+
+@media (max-width: 400px) {
+	.about-us h1, .about-us h2 {
+		font-size: 1.2em;
+	}
+	
+}

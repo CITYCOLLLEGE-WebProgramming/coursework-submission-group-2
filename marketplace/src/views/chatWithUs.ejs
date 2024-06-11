@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="/css/policy.css">
+  <link rel="stylesheet" href="css/navigation.css">
+  <link rel="stylesheet" href="/css/footer.css">
+  <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo192.png">
+  <link rel="manifest" href="%PUBLIC_URL%/manifest.json">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" type="text/css" href="/public/fonts/font-awesome-4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+
+  <title>Chat with Us - ScriptSeller</title>
+  <style>
+    .containerC {
+      width: 80%;
+      margin: 0 auto;
+      padding: 20px;
+      background-color: #fff;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+    h1 {
+      text-align: center;
+      color: #333;
+    }
+
+    .chat-box {
+      margin: 20px 0;
+      padding: 10px;
+      border: 1px solid #ccc;
+      background-color: #fafafa;
+      height: 300px;
+      overflow-y: scroll;
+    }
+
+    .chat-input {
+      width: calc(100% - 22px);
+      padding: 10px;
+      margin-bottom: 10px;
+    }
+
+    .send-button {
+      padding: 10px 20px;
+      background-color: blue;
+      color: white;
+      border: none;
+      cursor: pointer;
+    }
+
+    .send-button:hover {
+      background-color: darkblue;
+    }
+
+    .message {
+      margin: 5px 0;
+      padding: 10px;
+      border-radius: 5px;
+    }
+
+    .user-message {
+      background-color: #d1e7dd;
+      text-align: left;
+    }
+
+    .support-message {
+      background-color: #f8d7da;
+      text-align: right;
+    }
+  </style>
+</head>
+
+<body>
+
+  <% if (isCompanyUser) { %>
+    <nav>
+      <a href="/companyHomePage">
+        <div class="brand-text">
+          <img src="/images/logo.png" alt="Logo">
+          <p id="logoTitle">SCRIPT SELLER</p>
+        </div>
+      </a>
+
+      <div class="search-container">
+        <form id="searchForm" action="/companyHomePage" method="get">
+          <button id="icon" type="submit"><i class="fa fa-search"></i></button>
+          <input type="text" name="search" placeholder="Search for products...">
+        </form>
+      </div>
+
+      <div class="icon-buttons">
+        <a href="/addProduct">
+          <div class="addProduct">
+            Add Product <i class="fas fa-plus"></i>
+          </div>
+        </a>
+        <a href="/companyProfile"><button><i class="fas fa-user"></i></button></a> <!-- Profile icon -->
+      </div>
+    </nav>
+  <% } else { %>
+    <nav>
+      <a href="/HomePage">
+        <div class="brand-text">
+          <img src="/images/logo.png" alt="Logo">
+          <p id="logoTitle">SCRIPT SELLER</p>
+        </div>
+      </a>
+
+      <div class="search-container">
+        <form id="searchForm" action="/HomePage" method="get">
+          <button id="icon" type="submit"><i class="fa fa-search"></i></button>
+          <input type="text" name="search" placeholder="Search...">
+        </form>
+      </div>
+
+      <div class="icon-buttons">
+        <a href="/userProfile"><button><i class="fas fa-user"></i></button></a> <!-- Profile icon -->
+        <a href="/cart"><button><i class="fas fa-shopping-cart"></i></button></a> <!-- Shopping cart icon -->
+        <a href="/userFavorite"><button><i class="fas fa-heart"></i></button></a> <!-- Heart icon -->
+      </div>
+    </nav>
+  <% } %>
+
+  <div class="root">
+    <section class="privacy-policy">
+      <div class="containerC">
+        <h1>Chat with Us</h1>
+        <p>Welcome to ScriptSeller's live chat! Please type your message below and one of our support representatives will assist you shortly.</p>
+
+        <div class="chat-box" id="chatBox">
+          <!-- Chat messages will appear here -->
+        </div>
+
+        <input type="text" id="chatInput" class="chat-input" placeholder="Type your message here...">
+        <button class="send-button" onclick="sendMessage()">Send</button>
+      </div>
+    </section>
+  </div>
+  <% if (isCompanyUser) { %>
+    <footer class="footer">
+      <div class="container">
+        <div class="row">
+          <div class="footer-col">
+            <h4>company</h4>
+            <ul>
+              <li><a href="/aboutUs">about us</a></li>
+              <li><a href="/ourServices">our services</a></li>
+              <li><a href="/policy">privacy policy</a></li>
+            </ul>
+          </div>
+          <div class="footer-col">
+            <h4>get help</h4>
+            <ul>
+              <li><a href="/helpCenter">FAQ</a></li>
+              <li><a href="/chatSupport">Chat Support</a></li>
+              <li><a href="/sellingProducts">Your Products</a></li>
+              <li><a href="/soldProducts">Your Selling History</a></li>
+            </ul>
+          </div>
+          <div class="footer-col">
+            <h4>Script-Sellers Payment</h4>
+            <ul>
+              <li><a href="/businessCard">Script-Sellers Business Card</a></li>
+            </ul>
+          </div>
+          <div class="footer-col">
+            <h4>follow us</h4>
+            <div class="social-links">
+              <a href="https://www.facebook.com"><i class="fab fa-facebook-f"></i></a>
+              <a href="https://twitter.com"><i class="fab fa-twitter"></i></a>
+              <a href="https://instagram.com"><i class="fab fa-instagram"></i></a>
+              <a href="https://www.linkedin.com"><i class="fab fa-linkedin-in"></i></a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </footer>
+  <% } else { %>
+    <footer class="footer">
+      <div class="container">
+        <div class="row">
+          <div class="footer-col">
+            <h4>company</h4>
+            <ul>
+              <li><a href="/aboutUs">about us</a></li>
+              <li><a href="/ourServices">our services</a></li>
+              <li><a href="/policy">privacy policy</a></li>
+            </ul>
+          </div>
+          <div class="footer-col">
+            <h4>get help</h4>
+            <ul>
+              <li><a href="/helpCenter">FAQ</a></li>
+              <li><a href="/chatSupport">Chat Support</a></li>
+              <li><a href="/userOrderHistory">Your Order</a></li>
+              <li><a href="/userWallet">payment options</a></li>
+            </ul>
+          </div>
+          <div class="footer-col">
+            <h4>Script-Sellers Payment</h4>
+            <ul>
+              <li><a href="/businessCard">Script-Sellers Business Card</a></li>
+              <li><a href="/productInformation">Your Wallet</a></li>
+            </ul>
+          </div>
+          <div class="footer-col">
+            <h4>follow us</h4>
+            <div class="social-links">
+              <a href="https://www.facebook.com"><i class="fab fa-facebook-f"></i></a>
+              <a href="https://twitter.com"><i class="fab fa-twitter"></i></a>
+              <a href="https://instagram.com"><i class="fab fa-instagram"></i></a>
+              <a href="https://www.linkedin.com"><i class="fab fa-linkedin-in"></i></a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </footer>
+  <% } %>
+
+    <script>
+        function sendMessage() {
+            var chatBox = document.getElementById('chatBox');
+            var chatInput = document.getElementById('chatInput');
+            var userMessage = chatInput.value;
+
+            if (userMessage.trim() !== '') {
+                var messageElement = document.createElement('div');
+                messageElement.className = 'message user-message';
+                messageElement.textContent = userMessage;
+                chatBox.appendChild(messageElement);
+
+                chatInput.value = '';
+                chatBox.scrollTop = chatBox.scrollHeight;
+
+                // Simulate a response from support
+                setTimeout(function() {
+                    var supportMessage = document.createElement('div');
+                    supportMessage.className = 'message support-message';
+                    supportMessage.textContent = 'Thank you for your message! How can we assist you today?';
+                    chatBox.appendChild(supportMessage);
+                    chatBox.scrollTop = chatBox.scrollHeight;
+                }, 1000);
+            }
+        }
+    </script>
+</body>
+</html>

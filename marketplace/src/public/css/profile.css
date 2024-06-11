@@ -1,0 +1,404 @@
+body {
+	overflow: hidden;
+}
+
+/* Additional styling for the div below the navigation */
+.content {
+	width: 100%;
+	height: 2000px;
+	background-color: #fff;
+	border-radius: 0px;
+	margin-top: calc(7% + -36px);     /* Adjust margin to be below navigation */
+}
+
+/* LIST AND DASHBOARD CSS */
+.dashboard {
+	margin-top: 10px;
+	box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px, rgb(51, 51, 51) 0px 0px 0px 3px;
+	width: 20%;
+	background-color: white;
+	color: black;
+	height: 300px;     /* Adjust if necessary */
+	margin-left: 30px;     /* Only left margin to create some space from the edge */
+	margin-right: 10px;
+}
+
+ul.no-bullets {
+	padding-top: 10px;
+	padding-bottom: 5px;
+	list-style-type: none;
+	padding-left: 0;
+}
+
+ul.no-bullets li {
+	display: flex;
+	align-items: center;     /* Centers the items vertically */
+	margin-bottom: 10px;
+}
+
+ul.no-bullets li i {
+	width: 30px;     /* Ensures all icons have the same width */
+	text-align: center;     /* Centers the icons if they are smaller than the width */
+	margin-right: 10px;     /* Space between the icon and the text */
+}
+
+.no-bullets {
+	list-style-type: none;
+	padding: 0;
+	margin: 0;
+}
+
+.no-bullets li {
+	margin-bottom: 10px;     /* Space between buttons */
+}
+
+.no-bullets a {
+	display: block;
+	width: 100%;
+	padding: 10px;
+	text-align: left;
+	color: inherit;
+	border: none;
+	font-size: 16px;
+	text-decoration: none;     /* Removes underline from links */
+	cursor: pointer;
+}
+
+.no-bullets a:hover {
+	background-color: black;     /* Slightly darker blue on hover */
+	color: white;
+}
+
+.no-bullets a i {
+	margin-right: 10px;
+}
+
+.root {
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background: #9053c7;
+	background: -webkit-linear-gradient(-135deg, #c850c0, #4158d0);
+	background: -o-linear-gradient(-135deg, #c850c0, #4158d0);
+	background: -moz-linear-gradient(-135deg, #c850c0, #4158d0);
+	background: linear-gradient(-135deg, #c850c0, #4158d0);
+	display: flex;     /* Example to layout children, adjust as needed */
+	justify-content: center;     /* Center children horizontally */
+	overflow: auto;     /* Allows scrolling inside .root if content overflows */
+	position: absolute;
+	margin-top: 3.37%;
+	align-items: stretch;     /* This will ensure they align to the same height automatically */
+}
+
+/* THE RIGHT DIV */
+.userContent {
+	margin-top: 10px;
+	flex-grow: 1;     /* Takes up the remaining space */
+	height: 500px;     /* Adjust if necessary */
+	margin-right: 30px;
+	font-family: 'Poppins', sans-serif;     /* background-color: #FFFFFF; */
+	color: #333;
+}
+
+.container {
+
+	width: 100%;
+	display: flex;
+	background-color: white;
+	margin: auto;
+	padding: 20px;
+	box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px, rgb(51, 51, 51) 0px 0px 0px 3px;
+}
+
+h2 {
+	margin-bottom: 20px;
+	color: black;
+	font-weight: bold;
+	display: flex;
+	width: 100%;
+	background-color: white;
+	margin-right: 10%;
+}
+
+.icon {
+	margin-right: 100px;
+	background-color: blue
+}
+
+.form-group {
+	border-bottom: 1px solid #ccc;     /* Light line under each form group */
+	margin-bottom: 15px;
+	display: flex;
+	align-items: center;
+}
+
+.data-label {
+	font-weight: bold;
+	width: 30%;     /* Adjust width here to manage the space */
+}
+
+.data-value {
+	width: 70%;     /* Adjust width here to manage content */
+	display: block;     /* Ensure this spans the full width */
+	padding-left: 20px;     /* Adjust padding to increase space */
+}
+
+.notification {
+	color: red;
+	font-weight: bold;
+}
+
+.alert {
+	border-bottom: 1px solid #ccc;     /* Light line under each form group */
+}
+
+
+
+.addresses h2 {
+	justify-content: space-between;     /* Aligns children to opposite ends */
+}
+
+.plus-icon {
+	margin-right: 20px;
+	font-size: 24px;     /* Adjust size as needed */
+	margin-right: 20px;
+	cursor: pointer;     /* Changes the cursor to pointer when hovering over the icon */
+	background: linear-gradient(to right, #8843f4, hwb(252 3% 43%));     /* Gradient from purple to teal */
+	-webkit-background-clip: text;
+	background-clip: text;
+	color: transparent;     /* Makes the text color transparent to show the background */
+	display: inline-block;     /* Necessary for sizing and gradient application */
+}
+
+.plus-icon:hover {
+	color: black;
+}
+
+.editButton {
+	background-color: white;
+	padding: 1%;
+	padding-left: 2%;
+	padding-right: 2%;
+	border-radius: 10px;
+}
+
+.editButton:hover {
+	background-color: black;
+	color: white;
+}
+
+.addresses {
+	padding-left: 20px;
+	width: 50%;
+	position: relative;     /* This positions the heading relative to its normal position */
+	background-color: white;     /* Ensures the background color covers the entire header */
+}
+
+.address-container {
+	width: 90%;
+}
+
+.address {
+	justify-content: space-between;
+	display: flex;
+	align-content: center;
+	border: 2px solid black;
+	/* padding: 10px; */
+	margin-bottom: 10px;
+	cursor: pointer;
+	position: relative;
+	background-color: white;
+}
+
+.address-title {
+	padding:10px;
+	/* margin-top: 4px; */
+	display: block;
+	/* background-color: red; */
+	height: 100%;
+	width: 80%;
+}
+
+.dropdown-content {
+	display: none;
+	position: absolute;
+	top: 100%;     /* Places the dropdown right below the address */
+	left: 0;
+	width: 100%;
+	background-color: white;
+	border: 1px solid #ccc;
+	box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+	padding: 10px;
+	z-index: 1;
+	box-sizing: border-box;
+}
+
+.address.active .dropdown-content {
+	display: block;
+}
+
+.dropdown-content p {
+	margin: 5px 0;
+}
+.icon-container {
+    position: relative;
+    display: inline-block;
+}
+
+.fa-plus.disabled {
+    font-size: 24px;
+    color: #999; /* Ensure the icon is visible */
+    cursor: not-allowed; /* Indicates the element is not clickable */
+}
+
+.tooltip {
+    visibility: hidden;
+    width: 220px;
+		background: #9053c7;
+		background: -webkit-linear-gradient(-135deg, #c850c0, #4158d0);
+		background: -o-linear-gradient(-135deg, #c850c0, #4158d0);
+		background: -moz-linear-gradient(-135deg, #c850c0, #4158d0);
+		background: linear-gradient(-135deg, #c850c0, #4158d0);
+
+    color: #fff;
+    text-align: center;
+    border-radius: 5px;
+    padding: 5px 0;
+    position: absolute;
+    z-index: 1;
+    bottom: 125%; /* Position the tooltip above the icon */
+    left: 50%;
+		margin-bottom: -100px;
+    margin-left: -210px; /* Center the tooltip */
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+
+.icon-container:hover .tooltip {
+    visibility: visible;
+    opacity: 1;
+}
+
+.button-group{
+	margin-top: 5px;
+}
+.remove-button {
+					 margin-right: 10px;
+					 background-color: transparent;
+					 color: red;
+					 border: none;
+					 cursor: pointer;
+					 font-size: 1.5em;
+			 }
+
+.remove-button:hover{
+					color: black;
+}
+
+			 .remove-button:focus {
+					 outline: none;
+			 }
+
+			 .dropdown-content {
+					 display: none;
+			 }
+
+			 .edit-button {
+			 					 margin-right: 10px;
+			 					 background-color: transparent;
+			 					 border: none;
+			 					 cursor: pointer;
+			 					 font-size: 1.5em;
+			 			 }
+
+			 			 .edit-button:focus {
+			 					 outline: none;
+			 			 }
+
+			 			 .dropdown-content {
+			 					 display: none;
+			 			 }
+
+ .edit-button:hover {
+	 color:blue;
+ }
+
+
+
+
+ @media (max-width: 700px) {
+	.dashboard {
+		width: 100%;
+		margin-left: 0;
+		margin-right: 0;
+		margin-top: 70px;
+	}
+
+	.userContent {
+		margin-right: 0;
+		height: auto;
+	}
+
+	.container {
+		flex-direction: column;
+		padding: 10px;
+		box-shadow: none;
+	}
+
+	.section {
+		width: 100%;
+		margin-top: 70px;
+		margin-right: 0;
+	}
+
+	.addresses, .section {
+		width: 100%;
+		margin-right: 0;
+		margin-bottom: 10px;
+	}
+
+	h2 {
+		margin-right: 0;
+	}
+
+	.no-bullets a {
+		font-size: 14px;
+		padding: 8px;
+	}
+
+	.icon {
+		margin-right: 50px;
+	}
+
+	.address {
+		flex-direction: column;
+		align-items: flex-start;
+	}
+
+	.address-title {
+		width: 100%;
+	}
+
+	.dropdown-content {
+		width: 100%;
+	}
+
+	.plus-icon {
+		font-size: 20px;
+	}
+
+	.editButton {
+		padding: 5px;
+		border-radius: 5px;
+	}
+
+	.form-group {
+		flex-direction: column;
+		align-items: flex-start;
+	}
+
+	.data-label, .data-value {
+		width: 100%;
+		padding-left: 0;
+	}
+

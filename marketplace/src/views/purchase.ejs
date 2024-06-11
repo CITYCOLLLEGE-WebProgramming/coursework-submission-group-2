@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="/css/purchase.css">
+  <link rel="stylesheet" href="css/navigation.css">
+  <link rel="stylesheet" href="/css/footer.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+  <script>
+    function toggleDropdown(id) {
+      var dropdown = document.getElementById(id);
+      var address = dropdown.parentElement;
+      var allDropdowns = document.querySelectorAll('.dropdown-content');
+      allDropdowns.forEach(function (content) {
+        if (content.id !== id) {
+          content.style.display = 'none';
+          content.parentElement.classList.remove('active');
+        }
+      });
+      if (dropdown.style.display === "block") {
+        dropdown.style.display = "none";
+        address.classList.remove('active');
+      } else {
+        dropdown.style.display = "block";
+        address.classList.add('active');
+      }
+    }
+
+    function updateAddress() {
+      const selectedAddress = document.querySelector('input[name="addressSelect"]:checked').value;
+      document.getElementById('addressName').value = selectedAddress;
+    }
+
+    function updateNewAddress() {
+      if (document.getElementById('addressSwitch').checked) {
+        const newAddressName = document.querySelector('input[name="newAddressName"]').value;
+        document.getElementById('addressName').value = newAddressName;
+      }
+    }
+
+    document.addEventListener('DOMContentLoaded', function () {
+      const addressSwitch = document.getElementById('addressSwitch');
+      const cardSwitch = document.getElementById('cardSwitch');
+      const acceptTerms = document.querySelector('.summary-top input[type="checkbox"]');
+      const purchaseButton = document.querySelector('.summary .button');
+      const addressFields = document.getElementById('addressFields');
+      const cardFields = document.getElementById('cardFields');
+      const addressRadioButtons = document.querySelectorAll('.address-radio');
+      const cardRadioButtons = document.querySelectorAll('.card-radio');
+      const addressInputs = addressFields.querySelectorAll('input[type="text"]');
+      const cardInputs = cardFields.querySelectorAll('input[type="text"]');
+
+      function areInputsFilled(inputs) {
+        return Array.from(inputs).every(input => input.value.trim() !== '');
+      }
+
+      function validateForm() {
+        const isAddressValid = Array.from(addressRadioButtons).some(radio => radio.checked) ||
+          (addressSwitch.checked && areInputsFilled(addressInputs));
+        const isCardValid = Array.from(cardRadioButtons).some(radio => radio.checked) ||
+          (cardSwitch.checked && areInputsFilled(cardInputs));
+        const isTermsAccepted = acceptTerms.checked;
+
+        if (isAddressValid && isCardValid && isTermsAccepted) {
+          purchaseButton.classList.remove('disabled');
+          purchaseButton.href = "#"; // Set to the correct URL if necessary
+        } else {
+          purchaseButton.classList.add('disabled');
+          purchaseButton.removeAttribute('href');
+        }
+      }
+
+      addressSwitch.addEventListener('change', function () {
+        addressFields.classList.toggle('hidden', !this.checked);
+        addressRadioButtons.forEach(radio => radio.checked = false);
+        validateForm();
+      });
+
+      cardSwitch.addEventListener('change', function () {
+        cardFields.classList.toggle('cardhidden', !this.checked);
+        cardRadioButtons.forEach(radio => radio.checked = false);
+        validateForm();
+      });
+
+      addressRadioButtons.forEach(radio => {
+        radio.addEventListener('change', function () {
+          addressSwitch.checked = false;
+          addressFields.classList.add('hidden');
+          validateForm();
+        });
+      });
+
+      cardRadioButtons.forEach(radio => {
+        radio.addEventListener('change', function () {
+          cardSwitch.checked = false;
+          cardFields.classList.add('cardhidden');
+          validateForm();
+        });
+      });
+
+      acceptTerms.addEventListener('change', validateForm);
+
+      addressInputs.forEach(input => {
+        input.addEventListener('input', validateForm);
+      });
+
+      cardInputs.forEach(input => {
+        input.addEventListener('input', validateForm);
+      });
+
+      validateForm();
+    });
+  </script>
+</head>
+
+<body>
+  <nav>
+    <a href="/HomePage">
+      <div class="brand-text">
+        <img src="/images/logo.png" alt="Logo">
+        <p id="logoTitle">SCRIPT SELLER</p>
+      </div>
+    </a>
+    <div class="search-container">
+      <form id="searchForm" action="/HomePage" method="get">
+        <button id="icon" type="submit"><i class="fa fa-search"></i></button>
+        <input type="text" name="search" placeholder="Search...">
+      </form>
+    </div>
+    <div class="icon-buttons">
+      <a href="/userProfile"><button><i class="fas fa-user"></i></button></a>
+      <a href="/cart"><button><i class="fas fa-shopping-cart"></i></button></a>
+      <a href="/userFavorite"><button><i class="fas fa-heart"></i></button></a>
+    </div>
+  </nav>
+
+  <div class="root">
+    <div class="rootBody">
+      <div class="addresses">
+        <div class="address-container">
+          <h3>Address</h3>
+          <h4>Saved Addresses:</h4>
+          <% if (user.addresses && user.addresses.length > 0) { %>
+            <% user.addresses.forEach(function (address, index) { %>
+              <div class="address-item">
+                <div class="address" onclick="toggleDropdown('dropdown<%= index %>')">
+                  <span class="address-title">
+                    <%= address.addressName %>
+                  </span>
+                  <div id="dropdown<%= index %>" class="dropdown-content">
+                    <p><strong>Address Name:</strong> <%= address.addressName %></p>
+                    <p><strong>Street:</strong> <%= address.street %></p>
+                    <p><strong>Street Number:</strong> <%= address.streetNumber %></p>
+                    <p><strong>Postal Code:</strong> <%= address.postalCode %></p>
+                    <p><strong>City:</strong> <%= address.city %></p>
+                    <p><strong>Floor:</strong> <%= address.floor %></p>
+                    <p><strong>Phone Number:</strong> <%= address.phonenumber %></p>
+                  </div>
+                </div>
+                <input type="radio" name="addressSelect" class="address-radio" value="<%= address.addressName %>" style="width: 20px; height: 20px; margin-bottom: 10px;" <%= index === 0 ? 'checked' : '' %> onchange="updateAddress()">
+              </div>
+            <% }); %>
+          <% } else { %>
+            <p style="margin-bottom:20px;">No addresses Saved yet.</p>
+          <% } %>
+
+          <div style="display: flex; align-items: center;">
+            <span>Other address</span>
+            <label class="switch">
+              <input type="checkbox" id="addressSwitch" onchange="updateNewAddress()">
+              <span class="slider"></span>
+            </label>
+          </div>
+          <div id="addressFields" class="address-fields hidden">
+            <p>Address name:<input type="text" placeholder="Address Name" name="newAddressName" oninput="updateNewAddress()"></p>
+            <p>Street:<input type="text" placeholder="Street" name="newStreet"></p>
+            <p>Street Number:<input type="text" placeholder="Street Number" name="newStreetNumber"></p>
+            <p>Postal Code:<input type="text" placeholder="Postal Code" name="newPostalCode"></p>
+            <p>City:<input type="text" placeholder="City" name="newCity"></p>
+            <p>Floor:<input type="text" placeholder="Floor" name="newFloor"></p>
+            <p>PhoneNumber:<input type="text" placeholder="PhoneNumber" name="newPhoneNumber"></p>
+          </div>
+        </div>
+      </div>
+
+      <div class="pContainer payment">
+        <h3>Card</h3>
+        <h4>Saved Cards:</h4>
+        <% if (user.cards && user.cards.length > 0) { %>
+          <% user.cards.forEach(function (card, index) { %>
+            <div class="card-item">
+              <div class="address" onclick="toggleDropdown('cardDropdown<%= index %>')">
+                <span class="address-title">
+                  <%= card.cardName %>
+                </span>
+                <div id="cardDropdown<%= index %>" class="dropdown-content">
+                  <div class="card">
+                    <div class="card-field">
+                      <label>Card Number:</label><span><%= card.maskedCardNumber %></span>
+                    </div>
+                    <div class="card-field">
+                      <label>Card Holder Name:</label><span><%= card.cardName %></span>
+                    </div>
+                    <div class="card-field">
+                      <label>Expiration Date:</label><span><%= card.expiryDate %></span>
+                    </div>
+                    <div class="card-field">
+                      <label>CVV:</label><span><%= card.cvv %></span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <input type="radio" name="cardSelect" class="card-radio" style="width: 20px; height: 20px; margin-bottom: 20px;">
+            </div>
+          <% }); %>
+        <% } else { %>
+          <p style="margin-bottom:20px;">No credit cards saved.</p>
+        <% } %>
+
+        <div style="display: flex; align-items: center;">
+          <span>Other Card</span>
+          <label class="switch">
+            <input type="checkbox" id="cardSwitch">
+            <span class="slider"></span>
+          </label>
+        </div>
+        <div id="cardFields" class="card-fields cardhidden">
+          <div>
+            <label>Cardholder name</label><input type="text" placeholder="Juanita Simmnons" name="newCardHolderName">
+            <label>Card number</label><input type="text" placeholder="5544 3456 8734 3484" name="newCardNumber">
+            <label>Expiration date</label><input type="text" placeholder="07 / 28" name="newExpirationDate">
+            <label>CVV</label><input type="text" placeholder="722" name="newCVV">
+          </div>
+        </div>
+      </div>
+
+      <div class="pContainer summary">
+        <h3>Complete Purchase</h3>
+        <div class="price">
+          <span>Total Amount:</span><span class="price-amount"><%= totalAmount.toFixed(2) %>€</span>
+        </div>
+        <div class="summary-top">
+          <label class="switch">
+            <input type="checkbox">
+            <span class="slider"></span>
+          </label>
+          <p style="margin-left: 10px; width:85%;">I accept the <a href="/policy">Terms of Use and the Company's Policies</a> </p>
+        </div>
+        <form id="purchaseForm" method="POST" action="/completePurchase" onsubmit="updateNewAddress()">
+          <% cart.forEach(item => { %>
+            <input type="hidden" name="products[]" value="<%= item.product.ProductName %>">
+            <input type="hidden" name="quantities[]" value="<%= item.quantity %>">
+          <% }); %>
+          <input type="hidden" name="totalAmount" value="<%= totalAmount %>">
+          <input type="hidden" id="addressName" name="addressName" value="<%= user.addresses && user.addresses.length > 0 ? user.addresses[0].addressName : '' %>">
+          <input type="hidden" name="otherStreet" value="">
+          <input type="hidden" name="otherStreetNumber" value="">
+          <input type="hidden" name="otherPostalCode" value="">
+          <input type="hidden" name="otherCity" value="">
+          <input type="hidden" name="otherFloor" value="">
+          <input type="hidden" name="otherPhoneNumber" value="">
+
+          <a href="#" class="button" onclick="document.getElementById('purchaseForm').submit();">Purchase</a>
+        </form>
+        <iframe src="/cartText"></iframe>
+        <div class="summary-bottom">
+          <a href="/cart" class="button">Edit cart</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="row">
+        <div class="footer-col">
+          <h4>company</h4>
+          <ul>
+            <li><a href="/aboutUs">about us</a></li>
+            <li><a href="/ourServices">our services</a></li>
+            <li><a href="/policy">privacy policy</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>get help</h4>
+          <ul>
+            <li><a href="/helpCenter">FAQ</a></li>
+            <li><a href="/chatSupport">Chat Support</a></li>
+            <li><a href="/userOrderHistory">Your Order</a></li>
+            <li><a href="/userWallet">payment options</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Script-Sellers Payment</h4>
+          <ul>
+            <li><a href="/businessCard">Script-Sellers Business Card</a></li>
+            <li><a href="/productInformation">Your Wallet</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>follow us</h4>
+          <div class="social-links">
+            <a href="https://www.facebook.com"><i class="fab fa-facebook-f"></i></a>
+            <a href="https://twitter.com"><i class="fab fa-twitter"></i></a>
+            <a href="https://instagram.com"><i class="fab fa-instagram"></i></a>
+            <a href="https://www.linkedin.com"><i class="fab fa-linkedin-in"></i></a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
+</body>
+
+</html>

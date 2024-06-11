@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" type="text/css" href="/css/settings.css">
+  <link rel="stylesheet" href="/css/navigation.css">
+  <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" type="text/css" href="/public/fonts/font-awesome-4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+  <title>Settings</title>
+</head>
+
+<body>
+  <% if (isCompanyUser) { %>
+     <nav>
+       <a href="/companyHomePage">
+         <div class="brand-text">
+           <img src="/images/logo.png" alt="Logo">
+           <p id="logoTitle">SCRIPT SELLER</p>
+         </div>
+       </a>
+
+       <div class="search-container">
+         <form id="searchForm" action="/companyHomePage" method="get">
+           <button id="icon" type="submit"><i class="fa fa-search"></i></button>
+           <input type="text" name="search" placeholder="Search...">
+         </form>
+       </div>
+
+       <div class="icon-buttons">
+         <a href="/addProduct">
+           <div class="addProduct">
+             Add Product <i class="fas fa-plus"></i>
+           </div>
+         </a>
+         <a href="/companyProfile"><button><i class="fas fa-user"></i></button></a> <!-- Profile icon -->
+       </div>
+     </nav>
+   <% } else { %>
+     <nav>
+       <a href="/HomePage">
+         <div class="brand-text">
+           <img src="/images/logo.png" alt="Logo">
+           <p id="logoTitle">SCRIPT SELLER</p>
+         </div>
+       </a>
+
+       <div class="search-container">
+         <form id="searchForm" action="/HomePage" method="get">
+           <button id="icon" type="submit"><i class="fa fa-search"></i></button>
+           <input type="text" name="search" placeholder="Search...">
+         </form>
+       </div>
+
+       <div class="icon-buttons">
+         <a href="/userProfile"><button><i class="fas fa-user"></i></button></a> <!-- Profile icon -->
+         <a href="/cart"><button><i class="fas fa-shopping-cart"></i></button></a> <!-- Shopping cart icon -->
+         <a href="/userFavorite"><button><i class="fas fa-heart"></i></button></a> <!-- Heart icon -->
+       </div>
+     </nav>
+   <% } %>
+
+  <div class="root">
+    <!-- LEFT DIV -->
+    <% if (isCompanyUser) { %>
+      <div class="dashboard">
+        <ul class="no-bullets">
+        <li><a href="/companyProfile"><i class="fa fa-user" aria-hidden="true"></i> My account</a></li>
+          <li><a href="/sellingProducts"> <i class="fa fa-university" aria-hidden="true"></i>Listed Products</a></li>
+          <li><a href="/soldProducts"> <i class="fa fa-history" aria-hidden="true"></i>Sold Product History</a></li>
+          <li><a href="/userHelp"> <i class="fa fa-info" aria-hidden="true"></i> Help</a></li>
+          <li><a href="/settings"><i class="fa fa-cog" aria-hidden="true"></i> Settings</a></li>
+          <li><a href="/logout"> <i class="fa fa-lock"></i>Logout</a></li>
+        </ul>
+      </div>
+    <% } else { %>
+      <div class="dashboard">
+        <ul class="no-bullets">
+          <li><a href="/userProfile"><i class="fa fa-user" aria-hidden="true"></i> My account</a></li>
+          <li><a href="/userWallet"> <i class="fa fa-university" aria-hidden="true"></i> Wallet</a></li>
+          <li><a href="/userOrderHistory"> <i class="fa fa-history" aria-hidden="true"></i> Order History</a></li>
+          <li><a href="/userHelp"> <i class="fa fa-info" aria-hidden="true"></i> Help</a></li>
+          <li><a href="/settings"><i class="fa fa-cog" aria-hidden="true"></i> Settings</a></li>
+          <li><a href="/login"> <i class="fa fa-lock"></i>Logout</a></li>
+        </ul>
+      </div>
+    <% } %>
+
+    <!-- RIGHT DIV -->
+    <div class="userContent">
+      <div class="container">
+        <div class="section">
+          <h2>Content Creation</h2>
+          <form>
+            <input type="radio" id="enroll" name="contentCreation" value="enroll">
+            <label for="enroll">I want to enroll in the Reward Program and have my videos featured on skroutz.gr. I
+              accept the <a href="#">Terms and Conditions</a>.</label><br>
+            <input type="radio" id="noEnroll" name="contentCreation" value="noEnroll">
+            <label for="noEnroll">I do not want to take part in the Rewards Program. I consent to the posting of my
+              videos on skroutz.gr and confirm that I have been informed about the <a href="#">Privacy
+                Policy</a>.</label>
+          </form>
+        </div>
+        <div class="section">
+          <h2>Profile followers</h2>
+          <form>
+            <input type="radio" id="enabled" name="profileFollowers" value="enabled" checked>
+            <label for="enabled">Enabled</label><br>
+            <input type="radio" id="disabled" name="profileFollowers" value="disabled">
+            <label for="disabled">Disabled</label>
+          </form>
+        </div>
+        <div class="section">
+          <h2>Account updates</h2>
+          <form>
+            <input type="checkbox" id="emailUpdates" name="accountUpdates" value="email" checked>
+            <label for="emailUpdates">Email</label><br>
+            <input type="checkbox" id="smsUpdates" name="accountUpdates" value="sms" checked>
+            <label for="smsUpdates">SMS</label>
+          </form>
+        </div>
+        <div class="section">
+          <h2>Personalized notifications</h2>
+          <form>
+            <input type="checkbox" id="emailNotif" name="personalizedNotifications" value="email" checked>
+            <label for="emailNotif">Email</label><br>
+            <input type="checkbox" id="smsNotif" name="personalizedNotifications" value="sms" checked>
+            <label for="smsNotif">SMS</label><br>
+            <input type="checkbox" id="whatsappNotif" name="personalizedNotifications" value="whatsapp" checked>
+            <label for="whatsappNotif">WhatsApp application</label>
+          </form>
+        </div>
+        <div class="section">
+          <h2>Dark Mode</h2>
+          <label class="switch">
+            <input type="checkbox" id="darkModeSwitch">
+            <span class="slider round"></span>
+          </label>
+        </div>
+        <div class="section">
+          <h2>Change Password</h2>
+          <p>Make sure to remember your new password</p>
+          <a class="" href="/changePass"><button class="changePass" type="button" name="button"> Change Password</button></a>
+        </div>
+        <div class="section">
+          <h2>Delete Account</h2>
+          <p>The deactivation process is completed immediately and cannot be reverted. You will no longer have account.
+          </p>
+            <button id="deleteAccountButton" class="deleteButton">Delete Account</button>
+        </div>
+      </div><!-- container -->
+    </div> <!-- userContentDIV -->
+  </div> <!--ROOT DIV -->
+
+  <!-- Script moved to the bottom of the body -->
+  <script>
+  document.getElementById('deleteAccountButton').addEventListener('click', function() {
+      if (confirm("Are you sure you want to delete your account? This action cannot be undone.")) {
+          fetch('/deleteAccount', {
+              method: 'POST',
+              headers: {
+                  'Content-Type': 'application/json'
+              },
+              body: JSON.stringify({})
+          }).then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    alert(data.message);
+                    window.location.href = '/login';
+                } else {
+                    alert("An error occurred: " + data.message);
+                }
+            }).catch(error => {
+                console.error('Error:', error);
+                alert("An error occurred. Please try again.");
+            });
+      }
+  });
+  </script>
+</body>
+
+</html>

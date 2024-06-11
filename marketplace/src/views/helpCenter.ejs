@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="/css/policy.css">
+  <link rel="stylesheet" href="css/navigation.css">
+  <link rel="stylesheet" href="/css/footer.css">
+
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" type="text/css" href="/public/fonts/font-awesome-4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+
+
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+</head>
+<body>
+
+  <% if (isCompanyUser) { %>
+    <nav>
+      <a href="/companyHomePage">
+        <div class="brand-text">
+          <img src="/images/logo.png" alt="Logo">
+          <p id="logoTitle">SCRIPT SELLER</p>
+        </div>
+      </a>
+
+      <div class="search-container">
+        <form id="searchForm" action="/companyHomePage" method="get">
+          <button id="icon" type="submit"><i class="fa fa-search"></i></button>
+          <input type="text" name="search" placeholder="Search for products...">
+        </form>
+      </div>
+
+      <div class="icon-buttons">
+        <a href="/addProduct">
+          <div class="addProduct">
+            Add Product <i class="fas fa-plus"></i>
+          </div>
+        </a>
+        <a href="/companyProfile"><button><i class="fas fa-user"></i></button></a> <!-- Profile icon -->
+      </div>
+    </nav>
+  <% } else { %>
+    <nav>
+      <a href="/HomePage">
+        <div class="brand-text">
+          <img src="/images/logo.png" alt="Logo">
+          <p id="logoTitle">SCRIPT SELLER</p>
+        </div>
+      </a>
+
+      <div class="search-container">
+        <form id="searchForm" action="/HomePage" method="get">
+          <button id="icon" type="submit"><i class="fa fa-search"></i></button>
+          <input type="text" name="search" placeholder="Search...">
+        </form>
+      </div>
+
+      <div class="icon-buttons">
+        <a href="/userProfile"><button><i class="fas fa-user"></i></button></a> <!-- Profile icon -->
+        <a href="/cart"><button><i class="fas fa-shopping-cart"></i></button></a> <!-- Shopping cart icon -->
+        <a href="/userFavorite"><button><i class="fas fa-heart"></i></button></a> <!-- Heart icon -->
+      </div>
+    </nav>
+  <% } %>
+
+<div class="root">
+
+  <section class="privacy-policy">
+    <div class="container">
+    <h1>ScriptSeller Help Center</h1>
+    <p>Welcome to the ScriptSeller Help Center! Here, you’ll find answers to common questions about your purchases, account management, and more. Browse the topics below or use the search bar to find specific information.</p>
+
+    <div style="margin-top:20px;" class="faq-section">
+        <h2>Frequently Asked Questions (FAQs)</h2>
+
+        <h3>Purchases and Orders</h3>
+        <p class="faq-question">Q: How do I track my order?</p>
+        <p class="faq-answer">A: You can track your order by visiting the "My Orders" section in your account. You will see a tracking link next to your purchase details.</p>
+
+        <p class="faq-question">Q: Can I cancel my order?</p>
+        <p class="faq-answer">A: Orders can be canceled within 24 hours of placing them. Go to "My Orders" and click on the "Cancel Order" button next to the item you wish to cancel.</p>
+
+        <p class="faq-question">Q: What payment methods do you accept?</p>
+        <p class="faq-answer">A: We accept all major credit cards, PayPal, and ScriptSeller gift cards.</p>
+    </div>
+
+    <div class="faq-section">
+        <h3>Account Management</h3>
+        <p class="faq-question">Q: How do I reset my password?</p>
+        <p class="faq-answer">A: Click on the "Forgot Password" link on the login page and follow the instructions. You’ll receive an email with a link to reset your password.</p>
+
+        <p class="faq-question">Q: How do I update my account information?</p>
+        <p class="faq-answer">A: Go to your account settings and update your personal information, address, and payment details.</p>
+
+        <p class="faq-question">Q: How do I delete my account?</p>
+        <p class="faq-answer">A: To delete your account, please contact our customer support team. They will assist you with the process.</p>
+    </div>
+
+    <div class="faq-section">
+        <h3>Product Information</h3>
+        <p class="faq-question">Q: How can I find product reviews?</p>
+        <p class="faq-answer">A: Product reviews are available on each product page. Scroll down to the "Reviews" section to read feedback from other customers.</p>
+
+        <p class="faq-question">Q: Are digital products refundable?</p>
+        <p class="faq-answer">A: Due to the nature of digital products, they are non-refundable. Please ensure you read the product description carefully before purchasing.</p>
+    </div>
+
+    <div class="faq-section">
+        <h3>Shipping and Delivery</h3>
+        <p class="faq-question">Q: What are the shipping options?</p>
+        <p class="faq-answer">A: We offer standard, express, and overnight shipping. Choose your preferred option at checkout.</p>
+
+        <p class="faq-question">Q: How long does delivery take?</p>
+        <p class="faq-answer">A: Delivery times vary based on your location and the shipping method selected. Standard shipping typically takes 5-7 business days.</p>
+    </div>
+
+    <div class="faq-section">
+        <h3>Customer Support</h3>
+        <p class="faq-question">Q: How do I contact customer support?</p>
+        <p class="faq-answer">A: You can reach our customer support team via the "Contact Us" page or by emailing support@scriptseller.com.</p>
+    </div>
+</div>
+  </section>
+
+  </div>
+
+
+  <% if (isCompanyUser) { %>
+    <footer class="footer">
+      <div class="container">
+        <div class="row">
+          <div class="footer-col">
+            <h4>company</h4>
+            <ul>
+              <li><a href="/aboutUs">about us</a></li>
+              <li><a href="/ourServices">our services</a></li>
+              <li><a href="/policy">privacy policy</a></li>
+            </ul>
+          </div>
+          <div class="footer-col">
+            <h4>get help</h4>
+            <ul>
+              <li><a href="/helpCenter">FAQ</a></li>
+              <li><a href="/chatSupport">Chat Support</a></li>
+              <li><a href="/sellingProducts">Your Products</a></li>
+              <li><a href="/soldProducts">Your Selling History</a></li>
+            </ul>
+          </div>
+          <div class="footer-col">
+            <h4>Script-Sellers Payment</h4>
+            <ul>
+              <li><a href="/businessCard">Script-Sellers Business Card</a></li>
+            </ul>
+          </div>
+          <div class="footer-col">
+            <h4>follow us</h4>
+            <div class="social-links">
+              <a href="https://www.facebook.com"><i class="fab fa-facebook-f"></i></a>
+              <a href="https://twitter.com"><i class="fab fa-twitter"></i></a>
+              <a href="https://instagram.com"><i class="fab fa-instagram"></i></a>
+              <a href="https://www.linkedin.com"><i class="fab fa-linkedin-in"></i></a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </footer>
+  <% } else { %>
+    <footer class="footer">
+      <div class="container">
+        <div class="row">
+          <div class="footer-col">
+            <h4>company</h4>
+            <ul>
+              <li><a href="/aboutUs">about us</a></li>
+              <li><a href="/ourServices">our services</a></li>
+              <li><a href="/policy">privacy policy</a></li>
+            </ul>
+          </div>
+          <div class="footer-col">
+            <h4>get help</h4>
+            <ul>
+              <li><a href="/helpCenter">FAQ</a></li>
+              <li><a href="/chatSupport">Chat Support</a></li>
+              <li><a href="/userOrderHistory">Your Order</a></li>
+              <li><a href="/userWallet">payment options</a></li>
+            </ul>
+          </div>
+          <div class="footer-col">
+            <h4>Script-Sellers Payment</h4>
+            <ul>
+              <li><a href="/businessCard">Script-Sellers Business Card</a></li>
+              <li><a href="/productInformation">Your Wallet</a></li>
+            </ul>
+          </div>
+          <div class="footer-col">
+            <h4>follow us</h4>
+            <div class="social-links">
+              <a href="https://www.facebook.com"><i class="fab fa-facebook-f"></i></a>
+              <a href="https://twitter.com"><i class="fab fa-twitter"></i></a>
+              <a href="https://instagram.com"><i class="fab fa-instagram"></i></a>
+              <a href="https://www.linkedin.com"><i class="fab fa-linkedin-in"></i></a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </footer>
+  <% } %>
+
+</body>
+</html>

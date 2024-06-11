@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sold Products Iframe</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+            background-color: white;
+        }
+        body::-webkit-scrollbar {
+        	width: 10px; /* Adjust the width of the scrollbar */
+        }
+
+        body::-webkit-scrollbar-track {
+        	-webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3); /* Shadow inside the track */
+        	border-radius: 10px; /* Optional: Rounded corners of the track */
+        	background: transparent; /* Color of the scrollbar track */
+        }
+
+        body::-webkit-scrollbar-thumb {
+        	background: linear-gradient(to top, #8843f4, hwb(252 3% 43%)); /* Gradient color for the scrollbar */
+        	border-radius: 10px; /* Rounded corners of the scrollbar */
+        }
+
+        body::-webkit-scrollbar-thumb:hover {
+        	background: linear-gradient(to top, #6622cc, #32c8b8); /* Darker gradient color on hover */
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+            background-color: #fff;
+        }
+        th, td {
+            padding: 12px;
+            border: 1px solid #ddd;
+            text-align: left;
+        }
+        th {
+            background-color: #f4f4f4;
+        }
+        tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+        .total-amount {
+            text-align: left;
+            margin-top: 20px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+  <% if (soldProducts.length > 0) { %>
+      <table>
+          <thead>
+              <tr>
+                  <th>Product Name</th>
+                  <th>Quantity</th>
+                  <th>Total Amount</th>
+                  <th>Purchase Date</th>
+                  <th>Buyer Email</th>
+              </tr>
+          </thead>
+          <tbody>
+              <% soldProducts.forEach(product => { %>
+                  <tr>
+                      <td><%= product.productName %></td>
+                      <td><%= product.quantity %></td>
+                      <td><%= product.totalAmount %></td>
+                      <td><%= new Date(product.purchaseDate).toLocaleDateString() %></td>
+                      <td><%= product.buyerEmail %></td>
+                  </tr>
+              <% }) %>
+          </tbody>
+      </table>
+      <div class="total-amount">
+          Total Amount of All Sold Products: <%= totalAmount %>
+      </div>
+  <% } else { %>
+      <div class="no-products">
+          No products were sold.
+      </div>
+  <% } %>
+</body>
+</html>

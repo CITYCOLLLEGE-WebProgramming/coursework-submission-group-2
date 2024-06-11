@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="/css/productInformation.css">
+  <link rel="stylesheet" href="/css/navigation.css">
+  <link rel="stylesheet" href="/css/footer.css">
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" type="text/css" href="/public/fonts/font-awesome-4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+</head>
+
+<body>
+
+  <% if (isCompanyUser) { %>
+    <nav>
+      <a href="/companyHomePage">
+        <div class="brand-text">
+          <img src="/images/logo.png" alt="Logo">
+          <p id="logoTitle">SCRIPT SELLER</p>
+        </div>
+      </a>
+      <div class="search-container">
+        <form id="searchForm" action="/companyHomePage" method="get">
+          <button id="icon" type="submit"><i class="fa fa-search"></i></button>
+          <input type="text" name="search" placeholder="Search for products...">
+        </form>
+      </div>
+      <div class="icon-buttons">
+        <a href="/addProduct">
+          <div class="addProduct">
+            Add Product <i class="fas fa-plus"></i>
+          </div>
+        </a>
+        <a href="/companyProfile"><button><i class="fas fa-user"></i></button></a>
+      </div>
+    </nav>
+  <% } else { %>
+    <nav>
+      <a href="/HomePage">
+        <div class="brand-text">
+          <img src="/images/logo.png" alt="Logo">
+          <p id="logoTitle">SCRIPT SELLER</p>
+        </div>
+      </a>
+      <div class="search-container">
+        <form id="searchForm" action="/HomePage" method="get">
+          <button id="icon" type="submit"><i class="fa fa-search"></i></button>
+          <input type="text" name="search" placeholder="Search for products...">
+        </form>
+      </div>
+      <div class="icon-buttons">
+        <a href="/userProfile"><button><i class="fas fa-user"></i></button></a>
+        <a href="/cart"><button><i class="fas fa-shopping-cart"></i></button></a>
+        <a href="/userFavorite"><button><i class="fas fa-heart"></i></button></a>
+      </div>
+    </nav>
+  <% } %>
+
+  <div class="root">
+    <div class="productContainer">
+      <div class="product-title">
+        <h1><%= product.ProductName %></h1>
+      </div>
+      <div class="picture">
+        <img id="productImage" src="/productImage/<%= product._id %>" alt="<%= product.ProductName %>">
+      </div>
+
+      <div class="product-info">
+        <h3>Product Information</h3>
+        <p>Description: <%= product.Description %></p>
+      </div>
+      <strong style="margin-left:12px;">Company: <%= companyName %></strong>
+      <strong style="margin-left:12px;"> BarCode: <%= product.BarCode %></strong>
+      <strong style="margin-right:12px;"> Available Quantity: <%= product.Quantity %></strong>
+      <div class="price">
+        <p>Price: $<%= product.Price %></p>
+      </div>
+
+      <% if (!isCompanyUser) { %>
+        <div class="cart">
+          <form action="/addToCart" method="post">
+            <input type="hidden" name="productId" value="<%= product._id %>">
+            <label for="quantity">Quantity:</label>
+            <input class="styled-input" type="number" name="quantity" id="quantity" value="1" min="1" max="<%= product.Quantity %>">
+            <button type="submit" onclick="handleClick(this)">Add to Cart</button>
+          </form>
+        </div>
+      <% } %>
+
+      <div class="reviews">
+        <h3>Customer Reviews</h3>
+        <div class="review">
+          <h4>kspower <span class="rating">★★★★★</span></h4>
+          <div class="meta">
+            <span>2024-01-01</span> |
+            <span>Verified purchase from Gamescom</span>
+          </div>
+          <p>This review is about the length: <a href="#">900 mm</a></p>
+          <p>
+            Quite satisfied with the mousepad as it relieves my hands instead of resting on the hard surface of the desk. The slight lift it has due to being rolled up in the packaging is very small and doesn't bother me, maybe it will settle over time. What I noticed is that it has a subtle plastic smell, exactly like the material of Vans shoes. The colors are just intense enough to be relaxing at night with the lights off without being disturbing. Also, the movement of the mouse is comfortable without any sticking (smooth).
+          </p>
+          <div class="images">
+            <img src="review_image1.jpg" alt="Review Image 1">
+            <img src="review_image2.jpg" alt="Review Image 2">
+            <img src="review_image3.jpg" alt="Review Image 3">
+          </div>
+        </div>
+        <div class="review">
+          <h4>Kyriakos_CHousakos <span class="rating">★★★★☆</span></h4>
+          <div class="meta">
+            <span>2023-09-03</span> |
+            <span>Verified purchase from Gamescom</span>
+          </div>
+          <p>
+            Very good and beautiful. The negative thing is that they bring it wrapped and the edges are not straight and do not flatten well. I have put heavy books on it all night, but it remains like that. Otherwise, very good.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- The Modal -->
+  <div id="myModal" class="modal">
+    <span class="close">&times;</span>
+    <img class="modal-content" id="img01">
+    <div id="caption"></div>
+  </div>
+
+  <% if (isCompanyUser) { %>
+    <footer class="footer">
+      <div class="container">
+        <div class="row">
+          <div class="footer-col">
+            <h4>company</h4>
+            <ul>
+              <li><a href="/aboutUs">about us</a></li>
+              <li><a href="/ourServices">our services</a></li>
+              <li><a href="/policy">privacy policy</a></li>
+            </ul>
+          </div>
+          <div class="footer-col">
+            <h4>get help</h4>
+            <ul>
+              <li><a href="/helpCenter">FAQ</a></li>
+              <li><a href="/chatSupport">Chat Support</a></li>
+              <li><a href="/sellingProducts">Your Products</a></li>
+              <li><a href="/soldProducts">Your Selling History</a></li>
+            </ul>
+          </div>
+          <div class="footer-col">
+            <h4>Script-Sellers Payment</h4>
+            <ul>
+              <li><a href="/businessCard">Script-Sellers Business Card</a></li>
+            </ul>
+          </div>
+          <div class="footer-col">
+            <h4>follow us</h4>
+            <div class="social-links">
+              <a href="https://www.facebook.com"><i class="fab fa-facebook-f"></i></a>
+              <a href="https://twitter.com"><i class="fab fa-twitter"></i></a>
+              <a href="https://instagram.com"><i class="fab fa-instagram"></i></a>
+              <a href="https://www.linkedin.com"><i class="fab fa-linkedin-in"></i></a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </footer>
+  <% } else { %>
+    <footer class="footer">
+      <div class="container">
+        <div class="row">
+          <div class="footer-col">
+            <h4>company</h4>
+            <ul>
+              <li><a href="/aboutUs">about us</a></li>
+              <li><a href="/ourServices">our services</a></li>
+              <li><a href="/policy">privacy policy</a></li>
+            </ul>
+          </div>
+          <div class="footer-col">
+            <h4>get help</h4>
+            <ul>
+              <li><a href="/helpCenter">FAQ</a></li>
+              <li><a href="/chatSupport">Chat Support</a></li>
+              <li><a href="/userOrderHistory">Your Order</a></li>
+              <li><a href="/userWallet">payment options</a></li>
+            </ul>
+          </div>
+          <div class="footer-col">
+            <h4>Script-Sellers Payment</h4>
+            <ul>
+              <li><a href="/businessCard">Script-Sellers Business Card</a></li>
+              <li><a href="/productInformation">Your Wallet</a></li>
+            </ul>
+          </div>
+          <div class="footer-col">
+            <h4>follow us</h4>
+            <div class="social-links">
+              <a href="https://www.facebook.com"><i class="fab fa-facebook-f"></i></a>
+              <a href="https://twitter.com"><i class="fab fa-twitter"></i></a>
+              <a href="https://instagram.com"><i class="fab fa-instagram"></i></a>
+              <a href="https://www.linkedin.com"><i class="fab fa-linkedin-in"></i></a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </footer>
+  <% } %>
+
+  <script>
+    function handleClick(button) {
+      const quantityInput = document.getElementById('quantity');
+      const maxQuantity = parseInt(quantityInput.max);
+      const selectedQuantity = parseInt(quantityInput.value);
+
+      if (selectedQuantity > maxQuantity) {
+        alert('You cannot add more than the available quantity to the cart.');
+        return;
+      }
+
+      button.style.backgroundColor = 'black';
+      button.textContent = 'Added';
+      setTimeout(function() {
+        button.style.backgroundColor = '';
+        button.textContent = 'Add to Cart';
+      }, 2000);
+    }
+
+    // Modal Image Script
+    // Get the modal
+    var modal = document.getElementById("myModal");
+
+    // Get the image and insert it inside the modal - use its "alt" text as a caption
+    var img = document.getElementById("productImage");
+    var modalImg = document.getElementById("img01");
+    var captionText = document.getElementById("caption");
+    img.onclick = function() {
+      modal.style.display = "block";
+      modalImg.src = this.src;
+      captionText.innerHTML = this.alt;
+    }
+
+    // Get the <span> element that closes the modal
+    var span = document.getElementsByClassName("close")[0];
+
+    // When the user clicks on <span> (x), close the modal
+    span.onclick = function() {
+      modal.style.display = "none";
+    }
+  </script>
+</body>
+</html>

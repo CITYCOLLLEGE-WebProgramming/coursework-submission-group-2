@@ -1,0 +1,441 @@
+/*--------------------------------------*/
+/* SCROLLBAR */
+/*--------------------------------------*/
+
+/* Styles for the entire page's scrollbar */
+body::-webkit-scrollbar {
+	width: 10px; /* Adjust the width of the scrollbar */
+}
+
+body::-webkit-scrollbar-track {
+	-webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3); /* Shadow inside the track */
+	border-radius: 10px; /* Optional: Rounded corners of the track */
+	background: transparent; /* Color of the scrollbar track */
+}
+
+body::-webkit-scrollbar-thumb {
+	background: linear-gradient(to top, #8843f4, hwb(252 3% 43%)); /* Gradient color for the scrollbar */
+	border-radius: 10px; /* Rounded corners of the scrollbar */
+}
+
+body::-webkit-scrollbar-thumb:hover {
+	background: linear-gradient(to top, #6622cc, #32c8b8); /* Darker gradient color on hover */
+}
+
+/*--------------------------------------*/
+/* Style for the vertical navigation bar */
+/*--------------------------------------*/
+
+ul.navbar {
+	bottom: 0;
+	padding-top: 3%;
+	top: 4%;
+	background-color: white;
+	position: fixed;
+	z-index: 3; /* Highest because it needs to be on top */
+	left: 0;
+	width: 200px;
+	overflow: hidden;
+	text-align: center;
+	margin-left: 30px;
+	box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
+}
+
+.no-bullets {
+	list-style-type: none;
+	padding-left: 0;
+}
+
+.no-bullets li {
+	border-bottom: 1px solid #ccc;
+	display: flex;
+	align-items: center; /* Centers the items vertically */
+}
+
+.no-bullets li i {
+	width: 30px; /* Ensures all icons have the same width */
+	text-align: center; /* Centers the icons if they are smaller than the width */
+	margin-right: 10px; /* Space between the icon and the text */
+}
+
+.no-bullets a {
+	display: block;
+	width: 100%;
+	padding: 10px;
+	text-align: left;
+	color: inherit;
+	border: none;
+	font-size: 16px;
+	text-decoration: none; /* Removes underline from links */
+	cursor: pointer;
+}
+
+.no-bullets a:hover {
+	background-color: black; /* Slightly darker blue on hover */
+	color: white;
+}
+
+#firstList {
+	border-top: 1px solid #ccc;
+}
+
+#productContainer {
+	margin-left: -40px;
+	flex-wrap: wrap;
+	height: 100%;
+	display: flex;
+	width: 100%;
+}
+
+#productLink{
+	color:black;
+}
+.content p {
+	margin-left:30px;
+}
+
+/*--------------------------------------*/
+/* CSS for product boxes on the home screen */
+/*--------------------------------------*/
+
+.content {
+    padding-left: 230px; /* Adjusted padding to start from where the vertical navbar ends */
+    padding-top: 5%;
+    position: relative;
+    z-index: 1;
+    display: flex;
+    flex-wrap: wrap; /* Allow items to wrap onto the next line */
+    min-height: 1000px;
+    height: auto;
+    margin-top: 5px;
+    background-color: white;
+    border-radius: 0px;
+    margin-left: 2%;
+}
+
+.product-box {
+    display: flex;
+    flex-direction: column; 
+    justify-content: space-between; 
+    align-items: center;
+    background: white;
+    background-color: #007bff00;
+    border: 1px solid #ddd;
+    padding: 2%;
+    width: calc(30% - 20px);
+    height: auto;
+    text-align: center;
+    margin-bottom: 20px;
+    border: 2px solid black;
+    border-radius: 5px; 
+    box-sizing: border-box;
+    box-shadow: 3px 3px 0px var(--start-color), -3px -3px 0px var(--end-color);
+    margin-left: 50px; 
+    margin-right: auto; 
+    margin-bottom: 40px;
+}
+
+:root {
+	--start-color: #3b82f6; /* Example starting color */
+	--end-color: #a855f7; /* Example ending color */
+}
+
+
+.product-box h3 {
+	font-size: 1.5em; /* Adjusted font size */
+	margin-bottom: 3%; /* Adjusted margin */
+}
+
+.product-box p {
+	font-size: 1em; /* Adjusted font size */
+	color: #777;
+	margin-bottom: 5%; /* Adjusted margin */
+}
+
+.product-box .buttons {
+    display: flex;
+    flex-direction: row; /* Arrange buttons in a row */
+    align-items: center; /* Center buttons vertically */
+    justify-content: center; /* Center buttons horizontally */
+    gap: 10px; /* Add some space between the buttons */
+    margin-top: auto; /* Pushes buttons to the bottom */
+    width: 100%; /* Make sure the buttons take the full width */
+}
+
+
+/* Favorite button */
+.container input {
+	position: absolute;
+	opacity: 0;
+	cursor: pointer;
+	height: 0;
+	width: 0;
+}
+
+
+.container {
+    display: block;
+    position: relative;
+    cursor: pointer;
+    user-select: none;
+    margin-left: 10px; /* Add left margin for spacing */
+}
+
+.container svg {
+	position: relative;
+	top: 0;
+	left: 0;
+	height: 40px;
+	width: 40px;
+	transition: all 0.3s;
+	fill: #666;
+	margin-left: 100%;
+}
+
+.container svg:hover {
+	transform: scale(1.1);
+}
+
+.container input:checked ~ svg {
+	fill: #E3474F;
+}
+
+/* Add to cart button */
+/* Add to cart button */
+.CartBtn {
+    width: 130px; /* Adjust width to fit content */
+    height: 40px;
+    border-radius: 12px;
+    border: none;
+    background-color: rgb(247, 247, 247);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition-duration: 0.5s;
+    overflow: hidden;
+    box-shadow: 0px 5px 10px rgba(255, 255, 255, 0.103);
+    position: relative;
+    margin-bottom: 0; /* Remove bottom margin */
+    padding: 0 10px; /* Add padding for better spacing */
+}
+
+.CartBtn:hover {
+    background-color: #4CAF50; /* Green background color on hover */
+    color: white; /* White text color on hover */
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.IconContainer {
+    position: relative; /* Change position to relative */
+    left: 0; /* Remove absolute positioning */
+    width: 30px;
+    height: 30px;
+    background-color: transparent;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    z-index: 2;
+    transition-duration: 0.5s;
+}
+
+
+
+.CartBtn:active {
+    transform: scale(0.95);
+    transition-duration: 0.5s;
+}
+
+.container {
+    display: block;
+    position: relative;
+    cursor: pointer;
+    user-select: none;
+
+}
+
+.container svg {
+    height: 40px; /* Adjusted size */
+    width: 40px; /* Adjusted size */
+    transition: all 0.3s;
+    fill: #666;
+}
+
+.container svg:hover {
+    transform: scale(1.1);
+}
+
+.container input:checked ~ svg {
+    fill: #E3474F;
+}
+
+
+.products-container {
+	width: 100%;
+	display: flex;
+	position: relative;
+}
+
+.cart{
+	margin-right:10px;
+}
+
+#clickedC {
+	background-color: black;
+	color:white;
+}
+#noProducts {
+	margin-left: 100px;
+	background-color: red;
+}
+
+@media (max-width: 768px) {
+    .content {
+        
+        padding-left: 10px;
+        padding-right: 10px; 
+        margin-left: auto; 
+        margin-right: auto;
+        display: flex;
+        justify-content: center; 
+        align-items: flex-start; 
+        margin-bottom: 40px; 
+        position: relative; 
+        
+    }
+
+    .product-box {
+     
+        width: calc(100% - 20px); 
+        margin-bottom: 10px; 
+        margin-top: 90px;
+        position: relative; 
+    }
+
+    .CartBtn {
+        position: absolute;
+        bottom: 10px;
+        left: 10px; 
+        width: calc(50% - 20px); 
+        margin-top: 10px;
+        margin-bottom: 10px;
+    }
+
+    .IconContainer {
+
+        bottom: 10px;
+        margin-left: 100%px;
+        width: calc(50% - 20px);
+    }
+}
+
+ul.navbar {
+    bottom: 0;
+    padding-top: 3%;
+    background-color: white;
+    position: fixed;
+    z-index: 3; /* Highest because it needs to be on top */
+    left: 0;
+    width: 200px;
+    overflow: hidden;
+    text-align: center;
+    margin-left: 30px;
+    box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
+}
+
+.no-bullets {
+    list-style-type: none;
+    padding-left: 0;
+}
+
+.no-bullets li {
+    border-bottom: 1px solid #ccc;
+    display: flex;
+    align-items: center; /* Centers the items vertically */
+}
+
+.no-bullets li i {
+    width: 30px;
+    text-align: center;
+    margin-right: 10px;
+}
+
+.no-bullets a {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    text-align: left;
+    color: inherit;
+    border: none;
+    font-size: 16px;
+    text-decoration: none; /* Removes underline from links */
+    cursor: pointer;
+}
+
+.no-bullets a:hover {
+    background-color: black; /* Slightly darker blue on hover */
+    color: white;
+}
+
+#firstList {
+    border-top: 1px solid #ccc;
+}
+
+@media (max-width: 768px) {
+    ul.navbar {
+        display: none;
+    }
+
+    .navbar-toggle {
+        position: fixed;
+        bottom: 20px;
+        left: 20px;
+        cursor: pointer;
+        background-color: #fff;
+        padding: 10px 20px;
+        border-radius: 5px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        z-index: 9999; /* Ensure it's above other elements */
+    }
+
+    .navbar-toggle:hover {
+        background-color: #444;
+    }
+
+    ul.navbar.active {
+        display: block;
+        position: fixed;
+        margin-top: 55px;
+		right: 100px;
+        width: 100%;
+        height: calc(100% - 50px);
+        background-color: white;
+        z-index: 9999;
+        overflow: auto;
+    }
+
+    .close-button {
+        display: block; /* Ensure close button is displayed */
+        position: fixed;
+        bottom: 20px;
+        left: 20px;
+    }
+}
+
+/* Close button */
+.close-button {
+    background-color: #fff;
+    padding: 10px 20px;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    z-index: 9999; /* Ensure it's above other elements */
+    cursor: pointer;
+}
+
+.close-button:hover {
+    background-color: #444;
+}
+
+

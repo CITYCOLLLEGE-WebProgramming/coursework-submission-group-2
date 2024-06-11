@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>SCRIPT SELLERS</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="/js/homePage.js">
+  <link rel="stylesheet" type="text/css" href="/css/aboutUs.css">
+  <link rel="stylesheet" href="/css/navigation.css">
+  <link rel="stylesheet" href="/css/footer.css">
+  <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo192.png" />
+  <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
+  <link rel="stylesheet" type="text/css" href="/public/fonts/font-awesome-4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+  <link rel="stylesheet" href="/css/aboutus.css"> <!-- Added link to the new CSS file -->
+</head>
+
+<body>
+  <% if (isCompanyUser) { %>
+    <nav>
+      <a href="/companyHomePage">
+        <div class="brand-text">
+          <img src="/images/logo.png" alt="Logo">
+          <p id="logoTitle">SCRIPT SELLER</p>
+        </div>
+      </a>
+
+      <div class="search-container">
+        <form id="searchForm" action="/companyHomePage" method="get">
+          <button id="icon" type="submit"><i class="fa fa-search"></i></button>
+          <input type="text" name="search" placeholder="Search for products...">
+        </form>
+      </div>
+
+      <div class="icon-buttons">
+        <a href="/addProduct">
+          <div class="addProduct">
+            Add Product <i class="fas fa-plus"></i>
+          </div>
+        </a>
+        <a href="/companyProfile"><button><i class="fas fa-user"></i></button></a> <!-- Profile icon -->
+      </div>
+    </nav>
+  <% } else { %>
+    <nav>
+      <a href="/HomePage">
+        <div class="brand-text">
+          <img src="/images/logo.png" alt="Logo">
+          <p id="logoTitle">SCRIPT SELLER</p>
+        </div>
+      </a>
+
+      <div class="search-container">
+        <form id="searchForm" action="/HomePage" method="get">
+          <button id="icon" type="submit"><i class="fa fa-search"></i></button>
+          <input type="text" name="search" placeholder="Search...">
+        </form>
+      </div>
+
+      <div class="icon-buttons">
+        <a href="/userProfile"><button><i class="fas fa-user"></i></button></a> <!-- Profile icon -->
+        <a href="/cart"><button><i class="fas fa-shopping-cart"></i></button></a> <!-- Shopping cart icon -->
+        <a href="/userFavorite"><button><i class="fas fa-heart"></i></button></a> <!-- Heart icon -->
+      </div>
+    </nav>
+  <% } %>
+
+  <div class="content">
+    <div class="about-us">
+      <h1>About Us</h1>
+      <p>Welcome to Script Sellers, the cutting-edge online marketplace dedicated to the buying and selling of scripts. Whether you are an esteemed screenwriter wishing to showcase your latest work or a producer in search of the next blockbuster, our platform is designed to meet your needs.</p>
+      <h2>Our Mission</h2>
+      <p>At Script Sellers, our mission is to bridge the gap between visionary writers and industry leaders. We strive to provide a streamlined platform where innovation meets opportunity, fostering a vibrant community where groundbreaking ideas can flourish and find their audience.</p>
+      <h2>What We Offer</h2>
+      <ul>
+        <li><strong>Comprehensive Script Listings:</strong> Explore an extensive array of scripts across diverse genres and formats.</li>
+        <li><strong>Intuitive Platform:</strong> Navigate effortlessly through listings and profiles with our state-of-the-art interface.</li>
+        <li><strong>Secure Transactions:</strong> Experience safe and reliable transactions for both buyers and sellers.</li>
+        <li><strong>Community Engagement:</strong> Join a dynamic community of writers and industry professionals dedicated to the art of storytelling.</li>
+      </ul>
+      <h2>Join Us</h2>
+      <p>At Script Sellers, we believe in the transformative power of stories. Join our community today to buy or sell scripts and be part of an exciting future in storytelling. Together, we can bring extraordinary narratives to life.</p>
+    </div>
+  </div>
+
+  <% if (isCompanyUser) { %>
+    <footer class="footer">
+      <div class="container">
+        <div class="row">
+          <div class="footer-col">
+            <h4>company</h4>
+            <ul>
+              <li><a href="/aboutUs">about us</a></li>
+              <li><a href="/ourServices">our services</a></li>
+              <li><a href="/policy">privacy policy</a></li>
+            </ul>
+          </div>
+          <div class="footer-col">
+            <h4>get help</h4>
+            <ul>
+              <li><a href="/helpCenter">FAQ</a></li>
+              <li><a href="/chatSupport">Chat Support</a></li>
+              <li><a href="/sellingProducts">Your Products</a></li>
+              <li><a href="/soldProducts">Your Selling History</a></li>
+            </ul>
+          </div>
+          <div class="footer-col">
+            <h4>Script-Sellers Payment</h4>
+            <ul>
+              <li><a href="/businessCard">Script-Sellers Business Card</a></li>
+            </ul>
+          </div>
+          <div class="footer-col">
+            <h4>follow us</h4>
+            <div class="social-links">
+              <a href="https://www.facebook.com"><i class="fab fa-facebook-f"></i></a>
+              <a href="https://twitter.com"><i class="fab fa-twitter"></i></a>
+              <a href="https://instagram.com"><i class="fab fa-instagram"></i></a>
+              <a href="https://www.linkedin.com"><i class="fab fa-linkedin-in"></i></a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </footer>
+  <% } else { %>
+    <footer class="footer">
+      <div class="container">
+        <div class="row">
+          <div class="footer-col">
+            <h4>company</h4>
+            <ul>
+              <li><a href="/aboutUs">about us</a></li>
+              <li><a href="/ourServices">our services</a></li>
+              <li><a href="/policy">privacy policy</a></li>
+            </ul>
+          </div>
+          <div class="footer-col">
+            <h4>get help</h4>
+            <ul>
+              <li><a href="/helpCenter">FAQ</a></li>
+              <li><a href="/chatSupport">Chat Support</a></li>
+              <li><a href="/userOrderHistory">Your Order</a></li>
+              <li><a href="/userWallet">payment options</a></li>
+            </ul>
+          </div>
+          <div class="footer-col">
+            <h4>Script-Sellers Payment</h4>
+            <ul>
+              <li><a href="/businessCard">Script-Sellers Business Card</a></li>
+              <li><a href="/productInformation">Your Wallet</a></li>
+            </ul>
+          </div>
+          <div class="footer-col">
+            <h4>follow us</h4>
+            <div class="social-links">
+              <a href="https://www.facebook.com"><i class="fab fa-facebook-f"></i></a>
+              <a href="https://twitter.com"><i class="fab fa-twitter"></i></a>
+              <a href="https://instagram.com"><i class="fab fa-instagram"></i></a>
+              <a href="https://www.linkedin.com"><i class="fab fa-linkedin-in"></i></a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </footer>
+  <% } %>
+
+</body>
+
+</html>

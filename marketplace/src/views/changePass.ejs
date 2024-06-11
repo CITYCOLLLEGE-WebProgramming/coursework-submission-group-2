@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Change Password</title>
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <script>
+      function showAlert(message) {
+              alert(message);
+          }
+
+          document.addEventListener("DOMContentLoaded", function() {
+              const form = document.getElementById("changePassForm");
+              form.addEventListener("submit", function(event) {
+                  event.preventDefault();
+
+                  const formData = new FormData(form);
+                  const data = {
+                      currentPassword: formData.get("currentPassword"),
+                      newPassword: formData.get("newPassword"),
+                      confirmNewPassword: formData.get("confirmNewPassword")
+                  };
+
+                  fetch('/changePass', {
+                      method: 'POST',
+                      headers: {
+                          'Content-Type': 'application/json'
+                      },
+                      body: JSON.stringify(data)
+                  })
+                  .then(response => response.json())
+                  .then(result => {
+                      showAlert(result.message);
+                      if (result.success) {
+                          window.location.href = result.redirect;
+                      }
+                  })
+                  .catch(error => {
+                      console.error('Error:', error);
+                      showAlert('An error occurred while changing the password.');
+                  });
+              });
+
+              // Toggle password visibility
+              const togglePasswordVisibility = (inputId, iconId) => {
+                  const input = document.getElementById(inputId);
+                  const icon = document.getElementById(iconId);
+                  if (input.type === "password") {
+                      input.type = "text";
+                      icon.classList.remove("fa-eye");
+                      icon.classList.add("fa-eye-slash");
+                  } else {
+                      input.type = "password";
+                      icon.classList.remove("fa-eye-slash");
+                      icon.classList.add("fa-eye");
+                  }
+              };
+
+              document.getElementById("toggleNewPassword").addEventListener("click", () => {
+                  togglePasswordVisibility("newPassword", "toggleNewPasswordIcon");
+              });
+
+              document.getElementById("toggleConfirmNewPassword").addEventListener("click", () => {
+                  togglePasswordVisibility("confirmNewPassword", "toggleConfirmNewPasswordIcon");
+              });
+          });
+    </script>
+</head>
+<body>
+
+  <div class="form-container">
+      <i id="backButton" class="fas fa-arrow-left back-arrow" onclick="window.history.back()"></i>
+      <h2>Change Password</h2>
+
+        <form id="changePassForm">
+            <div class="form-group">
+                <label for="currentPassword">Current Password:</label>
+                <input type="password" id="currentPassword" name="currentPassword" required placeholder="Enter your current Password">
+            </div>
+            <div class="form-group">
+                <label for="newPassword">New Password:</label>
+                <input type="password" id="newPassword" name="newPassword" required placeholder="Enter your new Password">
+                <button type="button" id="toggleNewPassword" class="eye"><i id="toggleNewPasswordIcon" class="fas fa-eye"></i></button>
+            </div>
+            <div class="form-group">
+                <label for="confirmNewPassword">Confirm New Password:</label>
+                <input type="password" id="confirmNewPassword" name="confirmNewPassword" required placeholder="Re-enter your new Password">
+                <button type="button" id="toggleConfirmNewPassword" class="eye" ><i id="toggleConfirmNewPasswordIcon" class="fas fa-eye"></i></button>
+            </div>
+            <button class="submit-btn" type="submit">Change Password</button>
+        </form>
+    </div>
+
+    <style>
+        .eye{
+            background: none;
+            border: none;
+            cursor: pointer;
+        }
+    </style>
+
+</body>
+</html>

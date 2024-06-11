@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" type="text/css" href="/css/profile.css">
+  <link rel="stylesheet" href="/css/navigation.css">
+  <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" type="text/css" href="/public/fonts/font-awesome-4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+
+  <style>
+
+    .edit-button {
+      margin-left: 10px;
+      cursor: pointer;
+      color: rgb(0, 0, 4);
+      text-decoration: underline;
+    }
+
+    .data-value[contenteditable="true"] {
+      border: 1px solid #ccc;
+      padding: 2px;
+    }
+
+    .edit-buttons {
+      display: none;
+    }
+
+    @media (max-width: 768px) {
+      .root {
+        flex-direction: column;
+      }
+
+      .dashboard {
+        width: 100%;
+        order: 2;
+        padding: 5px;
+      }
+
+      .userContent {
+        width: 100%;
+        order: 1;
+        padding: 5px;
+      }
+
+      .search-container, .icon-buttons, .addProduct {
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .search-container input {
+        width: 80%;
+      }
+
+      .icon-buttons button {
+        margin: 5px 0;
+      }
+
+      .edit-button {
+        display: inline-block;
+        margin-bottom: 10px;
+      }
+    }
+  </style>
+
+  <script>
+    function makeEditable() {
+      const elements = document.querySelectorAll('.data-value');
+      elements.forEach(element => {
+        element.setAttribute('data-original-value', element.innerText);
+        element.contentEditable = true;
+      });
+      document.getElementById('edit-buttons').style.display = 'inline';
+      document.getElementById('edit-all-button').style.display = 'none';
+    }
+
+    function saveAllChanges() {
+      const elements = document.querySelectorAll('.data-value');
+      elements.forEach(element => {
+        const input = document.querySelector(`input[name="${element.id}"]`);
+        input.value = element.innerText;
+      });
+
+      document.getElementById('main-form').submit();
+    }
+
+    function cancelAllChanges() {
+      const elements = document.querySelectorAll('.data-value');
+      elements.forEach(element => {
+        const originalValue = element.getAttribute('data-original-value');
+        element.innerText = originalValue;
+        element.contentEditable = false;
+      });
+
+      document.getElementById('edit-buttons').style.display = 'none';
+      document.getElementById('edit-all-button').style.display = 'inline';
+    }
+
+
+    function toggleDropdown(id) {
+      var dropdown = document.getElementById(id);
+      var address = dropdown.parentElement;
+
+      var allDropdowns = document.querySelectorAll('.dropdown-content');
+      allDropdowns.forEach(function (content) {
+        if (content.id !== id) {
+          content.style.display = 'none';
+          content.parentElement.classList.remove('active');
+        }
+      });
+
+      if (dropdown.style.display === "block") {
+        dropdown.style.display = "none";
+        address.classList.remove('active');
+      } else {
+        dropdown.style.display = "block";
+        address.classList.add('active');
+      }
+    }
+
+    function toggleDropdown(id) {
+      var dropdown = document.getElementById(id);
+      if (dropdown.style.display === "none" || dropdown.style.display === "") {
+          dropdown.style.display = "block";
+      } else {
+          dropdown.style.display = "none";
+      }
+    }
+
+  </script>
+</head>
+
+<body>
+  <nav>
+    <a href="/companyHomePage">
+      <div class="brand-text">
+        <img src="/images/logo.png" alt="Logo">
+        <p id="logoTitle">SCRIPT SELLER</p>
+      </div>
+    </a>
+
+    <div class="search-container">
+      <form id="searchForm" action="/companyHomePage" method="get">
+        <button id="icon" type="submit"><i class="fa fa-search"></i></button>
+        <input type="text" name="search" placeholder="Search for products...">
+      </form>
+    </div>
+
+    <div class="icon-buttons">
+
+
+      <a href="/addProduct">
+        <div class="addProduct">
+          Add Product <i class="fas fa-plus"></i>
+        </div>
+      </a>
+      <a href="/companyProfile"><button><i class="fas fa-user"></i></button></a>
+
+    </div>
+  </nav>
+
+  <div class="root">
+    <div class="dashboard">
+      <ul class="no-bullets">
+      <li><a href="/companyProfile"><i class="fa fa-user" aria-hidden="true"></i> My account</a></li>
+        <li><a href="/sellingProducts"> <i class="fa fa-university" aria-hidden="true"></i>Listed Products</a></li>
+        <li><a href="/soldProducts"> <i class="fa fa-history" aria-hidden="true"></i>Sold Product History</a></li>
+        <li><a href="/userHelp"> <i class="fa fa-info" aria-hidden="true"></i> Help</a></li>
+        <li><a href="/settings"><i class="fa fa-cog" aria-hidden="true"></i> Settings</a></li>
+        <li><a href="/logout"> <i class="fa fa-lock"></i>Logout</a></li>
+      </ul>
+    </div>
+
+    <div class="userContent">
+      <div class="container">
+        <div class="section">
+          <h2>Company Information</h2>
+          <form id="main-form" class="edit-form" action="/updateCompanyUser" method="POST" style="display:inline;">
+            <div class="form-group">
+              <span class="data-label">Name:</span>
+              <span id="name" class="data-value">
+                <%= user.name || '' %>
+              </span>
+              <input type="hidden" name="name" value="">
+            </div>
+            <div class="form-group">
+              <span class="data-label">Surname:</span>
+              <span id="surname" class="data-value">
+                <%= user.surname || '' %>
+              </span>
+              <input type="hidden" name="surname" value="">
+            </div>
+            <div class="form-group">
+              <span class="data-label">Email:</span>
+              <span id="email" class="data-value">
+                <%= user.email || '' %>
+              </span>
+              <input type="hidden" name="email" value="">
+            </div>
+            <div class="form-group">
+              <span class="data-label">Phone Number:</span>
+              <span id="phoneNumber" class="data-value">
+                <%= user.phoneNumber || '' %>
+              </span>
+              <input type="hidden" name="phoneNumber" value="">
+            </div>
+            <div class="form-group">
+              <span class="data-label">Gender:</span>
+              <span id="gender" class="data-value">
+                <%= user.gender || '' %>
+              </span>
+              <input type="hidden" name="gender" value="">
+            </div>
+            <div class="form-group">
+              <span class="data-label">SSN:</span>
+              <span id="SSN" class="data-value">
+                <%= user.SSN || '' %>
+              </span>
+              <input type="hidden" name="SSN" value="">
+            </div>
+          </form>
+          <div id="edit-buttons" class="edit-buttons">
+
+            <button class="editButton" type="button" onclick="saveAllChanges()">Update</button>
+            <button  class="editButton" type="button" onclick="cancelAllChanges()">Cancel</button>
+
+          </div>
+          <button class="editButton" id="edit-all-button" type="button" onclick="makeEditable()">Edit All</button>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</body>
+
+</html>

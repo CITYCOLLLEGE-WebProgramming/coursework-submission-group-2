@@ -1,0 +1,109 @@
+.root {
+  height: 100%;
+  background: #9053c7;
+  background: -webkit-linear-gradient(-135deg, #c850c0, #4158d0);
+  background: -o-linear-gradient(-135deg, #c850c0, #4158d0);
+  background: -moz-linear-gradient(-135deg, #c850c0, #4158d0);
+  background: linear-gradient(-135deg, #c850c0, #4158d0);
+  margin-top: 3.37%;
+  align-items: stretch;
+}
+
+.product-container {
+  display: flex;
+  flex-wrap: wrap;
+}
+.favContent {
+  position: relative;
+  min-height: 655px;
+  width: 90%;
+  background-color: white;
+  padding: 20px;
+  margin-left: 5%;
+  margin-top: 5%;
+  margin-bottom: 2%;
+  box-shadow:
+    rgba(0, 0, 0, 0.16) 0px 1px 4px,
+    rgb(51, 51, 51) 0px 0px 0px 3px;
+}
+
+.favcontainer input {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+  height: 0;
+  width: 0;
+}
+
+.favcontainer {
+  margin-right: 50px;
+  display: block;
+  position: relative;
+  cursor: pointer;
+  user-select: none;
+}
+
+.favcontainer svg {
+  position: relative;
+  top: 0;
+  left: 0;
+  height: 40px;
+  width: 40px;
+  transition: all 0.3s;
+  fill: #e3474f;
+  margin-left: 100%;
+}
+
+.favcontainer svg:hover {
+  transform: scale(1.1);
+}
+
+.favcontainer input:checked ~ svg {
+  fill: #666;
+}
+
+@media (max-width: 700px) {
+  .favContent {
+    margin-left: 10px;
+    margin-right: 10px;
+    margin-top: 100px;
+    width: calc(100% - 20px);
+  }
+
+  .product-container {
+    align-items: center;
+  }
+
+  .product-box {
+    margin-right: 40px;
+    height: auto;
+    margin-top: 20px;
+    padding-top: 20px;
+    margin-bottom: 20px;
+    width: calc(100% - 40px);
+  }
+
+  .favcontainer {
+    margin-right: 0;
+    width: 100%;
+    text-align: center;
+  }
+
+  .favcontainer svg {
+    margin-left: 0;
+    display: block;
+    margin: 0 auto;
+  }
+  .i fa, .fas {
+    font-weight: 900;
+    margin-left: 230px;
+  } 
+  .CartBtn {
+    margin-bottom: -8px;
+  }
+
+  .cart-icon {
+    margin-top: 18px;
+    margin-right: 10px;
+  }
+}

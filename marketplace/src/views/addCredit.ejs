@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="css/addProduct.css">
+  <link rel="stylesheet" href="css/navigation.css">
+  <link rel="stylesheet" href="css/addCredit.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+</head>
+<body>
+  <nav>
+    <a href="/HomePage">
+      <div class="brand-text">
+        <img src="/images/logo.png" alt="Logo">
+        <p id="logoTitle">SCRIPT SELLER</p>
+      </div>
+    </a>
+    <div class="search-container">
+      <form id="searchForm" action="/HomePage" method="get">
+        <button id="icon" type="submit"><i class="fa fa-search"></i></button>
+        <input type="text" name="search" placeholder="Search...">
+      </form>
+    </div>
+    <div class="icon-buttons">
+      <a href="/userProfile"><button><i class="fas fa-user"></i></button></a>
+      <a href="/cart"><button><i class="fas fa-shopping-cart"></i></button></a>
+      <a href="/userFavorite"><button><i class="fas fa-heart"></i></button></a>
+    </div>
+  </nav>
+  <div class="root">
+    <div class="container">
+      <div class="card-form">
+        <h2>Add Card</h2>
+        <form id="cardForm" action="/addCredit" method="post">
+          <label for="cardholder-name">Cardholder Name</label>
+          <input type="text" id="cardholder-name" name="cardHolderName" placeholder="Juanita Simmmon" required>
+
+          <label for="card-number">Card Number</label>
+          <div class="card-input-container">
+            <input type="text" id="card-number" name="cardNumber" placeholder="1234 5678 9012 3456" maxlength="19" required>
+            <img id="card-logo" src="" alt="Card Logo" class="card-logo">
+          </div>
+
+          <div class="input-group">
+            <div>
+              <label for="expiration-date">Expiration Date</label>
+              <input type="text" id="expiration-date" name="expirationDate" placeholder="MM / YY" maxlength="5" required>
+            </div>
+            <div>
+              <label for="cvv">CVV</label>
+              <input type="text" id="cvv" name="cvv" placeholder="722" maxlength="3" required>
+            </div>
+          </div>
+          <button class="button" type="submit">Add Card</button>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const cardNumberInput = document.getElementById('card-number');
+      const cardLogo = document.getElementById('card-logo');
+      const cardForm = document.getElementById('cardForm');
+      const expirationDateInput = document.getElementById('expiration-date');
+      const cvvInput = document.getElementById('cvv');
+
+      cardNumberInput.addEventListener('input', () => {
+        let cardNumber = cardNumberInput.value.replace(/\s+/g, ''); // Remove all spaces
+        const visaPattern = /^4[0-9]{0,15}$/;
+        const masterCardPattern = /^5[1-5][0-9]{0,14}$/;
+
+        if (visaPattern.test(cardNumber)) {
+          cardLogo.src = 'https://upload.wikimedia.org/wikipedia/commons/5/5e/Visa_Inc._logo.svg';
+          cardLogo.style.display = 'block';
+        } else if (masterCardPattern.test(cardNumber)) {
+          cardLogo.src = 'https://upload.wikimedia.org/wikipedia/commons/a/a4/Mastercard_2019_logo.svg';
+          cardLogo.style.display = 'block';
+        } else {
+          cardLogo.src = '';
+          cardLogo.style.display = 'none';
+        }
+
+        // Format the card number with spaces
+        cardNumber = cardNumber.replace(/(\d{4})(?=\d)/g, '$1 ');
+        cardNumberInput.value = cardNumber.substring(0, 19); // Limit the length to 19 (including spaces)
+      });
+
+      cardForm.addEventListener('submit', (event) => {
+        const cardNumber = cardNumberInput.value.replace(/\s+/g, ''); // Remove all spaces
+        if (cardNumber.length !== 16) {
+          event.preventDefault();
+          alert('The card number should be 16 digits.');
+        }
+      });
+
+      expirationDateInput.addEventListener('input', () => {
+        let expirationDate = expirationDateInput.value.replace(/\D/g, ''); // Remove all non-digit characters
+
+        if (expirationDate.length >= 3) {
+          expirationDate = `${expirationDate.substring(0, 2)}/${expirationDate.substring(2, 4)}`;
+        }
+
+        expirationDateInput.value = expirationDate;
+      });
+
+      cvvInput.addEventListener('input', () => {
+        cvvInput.value = cvvInput.value.replace(/\D/g, '').substring(0, 3); // Only allow digits and limit to 3
+      });
+    });
+  </script>
+</body>
+</html>

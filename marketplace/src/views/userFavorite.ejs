@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Favorite Products</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/homePage.css">
+    <link rel="stylesheet" href="/css/navigation.css">
+    <link rel="stylesheet" href="/css/footer.css">
+    <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo192.png" />
+    <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
+    <link rel="stylesheet" type="text/css" href="/public/fonts/font-awesome-4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link rel="stylesheet" href="/css/favorite.css">
+
+<script type="text/javascript">
+document.addEventListener('DOMContentLoaded', () => {
+    attachFavoriteListeners();
+    attachAddToCartListeners();
+});
+
+function attachFavoriteListeners() {
+    document.querySelectorAll('.heart-icon').forEach(icon => {
+        icon.addEventListener('click', async (event) => {
+            const productId = event.currentTarget.getAttribute('data-product-id');
+            const isFavorite = event.currentTarget.style.color === 'rgb(227, 71, 79)'; // #E3474F in RGB
+
+            console.log('Product ID:', productId, 'Is Favorite:', isFavorite); // Log product ID and favorite state
+
+            try {
+                const response = await fetch('/toggleFavorite', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ productId, isChecked: !isFavorite })
+                });
+
+                const result = await response.json();
+                if (result.success) {
+                    window.location.reload(); // Refresh the page
+                    console.log('Favorite removed successfully');
+                } else {
+                    console.error('Failed to remove favorite', result.message);
+                }
+            } catch (error) {
+                console.error('Error:', error);
+            }
+        });
+    });
+}
+
+
+async function addToCart(button, productId) {
+    try {
+        const response = await fetch('/addToCart', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ productId, quantity: 1 })
+        });
+
+        if (response.ok) {
+            button.classList.add('clicked');
+            button.querySelector('.text').textContent = 'Added';
+            setTimeout(() => {
+                button.classList.remove('clicked');
+                button.querySelector('.text').textContent = 'Add to Cart';
+            }, 2000); // Reset the button after 2 seconds
+        } else {
+            alert('Failed to add product to cart.');
+        }
+    } catch (error) {
+        console.error('Error adding product to cart:', error);
+        alert('An error occurred while adding the product to cart.');
+    }
+}
+
+
+</script>
+
+<style>
+.heart-icon {
+    font-size: 24px; /* Increase font size */
+    border: none;
+    background: none;
+    color: #E3474F;
+    cursor: pointer;
+    margin-left: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 30px; /* Match width with Add to Cart button */
+    height: 26px; /* Match height with Add to Cart button */
+}
+
+.heart-icon i {
+    font-size: 1.5em; /* Make the icon bigger */
+}
+
+.product-box .image-container {
+    width: 100%;
+    height: 200px; /* Set the desired height */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden; /* Hide overflow to maintain size */
+}
+.product-box img {
+    width: 50%;
+    height: 50%;
+    object-fit: cover; /* Maintain aspect ratio and cover the area */
+}
+</style>
+</head>
+<body>
+  <nav>
+    <a href="/HomePage">
+      <div class="brand-text">
+        <img src="/images/logo.png" alt="Logo">
+        <p id="logoTitle">SCRIPT SELLER</p>
+      </div>
+    </a>
+
+    <div class="search-container">
+      <form id="searchForm" action="/HomePage" method="get">
+        <button id="icon" type="submit"><i class="fa fa-search"></i></button>
+        <input type="text" name="search" placeholder="Search...">
+      </form>
+    </div>
+
+    <div class="icon-buttons">
+      <a href="/userProfile"><button><i class="fas fa-user"></i></button></a> <!-- Profile icon -->
+      <a href="/cart"><button><i class="fas fa-shopping-cart"></i></button></a> <!-- Shopping cart icon -->
+      <a href="/userFavorite"><button><i class="fas fa-heart"></i></button></a> <!-- Heart icon -->
+    </div>
+  </nav>
+
+  <div class="root">
+    <div class="favContent">
+      <h1 style="margin-bottom:20px;">Your Favorite Products</h1>
+      <% if (favorites.length === 0) { %>
+        <p>You have no favorite products.</p>
+      <% } else { %>
+        <div class="product-container">
+          <% favorites.forEach(product => { %>
+            <div class="product-box">
+              <img src="/productImage/<%= product._id %>" alt="<%= product.ProductName %>">
+              <h3><a href="/productInformation?id=<%= product._id %>"><%= product.ProductName %></a></h3>
+              <p>Price: $<%= product.Price %></p>
+              <div class="buttons">
+                <form action="/addToCart" method="POST" style="display: inline;">
+                  <input type="hidden" name="productId" value="<%= product._id %>">
+                  <input type="hidden" name="quantity" value="1">
+                  <button class="CartBtn" onclick="addToCart(this, '${product._id}')">
+                    <span class="IconContainer">
+                      <svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 576 512" fill="rgb(17, 17, 17)" class="cart">
+                        <path d="M0 24C0 10.7 10.7 0 24 0H69.5c22 0 41.5 12.8 50.6 32h411c26.3 0 45.5 25 38.6 50.4l-41 152.3c-8.5 31.4-37 53.3-69.5 53.3H170.7l5.4 28.5c2.2 11.3 12.1 19.5 23.6 19.5H488c13.3 0 24 10.7 24 24s-10.7 24-24 24H199.7c-34.6 0-64.3-24.6-70.7-58.5L77.4 54.5c-.7-3.8-4-6.5-7.9-6.5H24C10.7 48 0 37.3 0 24zM128 464a48 48 0 1 1 96 0 48 48 0 1 1 -96 0zm336-48a48 48 0 1 1 0 96 48 48 0 1 1 0-96z"></path>
+                      </svg>
+                    </span>
+                    <p class="text">Add to Cart</p>
+                  </button>
+                </form>
+                <button class="heart-icon" data-product-id="<%= product._id %>" style="color: #E3474F;">
+                  <i class="fas fa-heart"></i>
+                </button>
+              </div>
+            </div>
+          <% }); %>
+        </div>
+      <% } %>
+    </div> <!--Fav content-->
+  </div> <!-- root -->
+
+  <footer class="footer">
+    <div class="container">
+      <div class="row">
+        <div class="footer-col">
+          <h4>company</h4>
+          <ul>
+            <li><a href="/aboutUs">about us</a></li>
+            <li><a href="/ourServices">our services</a></li>
+            <li><a href="/policy">privacy policy</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>get help</h4>
+          <ul>
+            <li><a href="/helpCenter">FAQ</a></li>
+            <li><a href="/chatSupport">Chat Support</a></li>
+            <li><a href="/userOrderHistory">Your Order</a></li>
+            <li><a href="/userWallet">payment options</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Script-Sellers Payment</h4>
+          <ul>
+            <li><a href="/businessCard">Script-Sellers Business Card</a></li>
+            <li><a href="/productInformation">Your Wallet</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>follow us</h4>
+          <div class="social-links">
+            <a href="https://www.facebook.com"><i class="fab fa-facebook-f"></i></a>
+            <a href="https://twitter.com"><i class="fab fa-twitter"></i></a>
+            <a href="https://instagram.com"><i class="fab fa-instagram"></i></a>
+            <a href="https://www.linkedin.com"><i class="fab fa-linkedin-in"></i></a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>

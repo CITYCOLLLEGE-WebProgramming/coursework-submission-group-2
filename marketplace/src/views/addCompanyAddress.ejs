@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="css/addProduct.css">
+  <link rel="stylesheet" href="css/navigation.css">
+
+
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" type="text/css" href="/public/fonts/font-awesome-4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+
+
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+</head>
+
+<body>
+
+  <nav>
+    <a href="/HomePage">
+      <div class="brand-text">
+        <img src="/images/logo.png" alt="Logo">
+        <p id="logoTitle">SCRIPT SELLER</p>
+      </div>
+    </a>
+
+    <div class="search-container">
+      <button id="icon" type="submit"><i class="fa fa-search"></i></button>
+      <input type="text" placeholder="Search...">
+    </div>
+
+    <div class="icon-buttons">
+      <a href="/userProfile"><button><i class="fas fa-user"></i></button></a>
+      <button><i class="fas fa-shopping-cart"></i></button>
+      <a href="/userFavorite"><button><i class="fas fa-heart"></i></button></a>
+    </div>
+  </nav>
+
+  <div class="root">
+
+  <div class="container">
+         <h1>Add Address</h1>
+         <form action="/addCompanyAddress" method="post">
+             <label for="productName">Address Name</label>
+             <input type="text" id="productName" name="addressName" required placeholder="Enter Address Name">
+
+             <div class="half-row">
+                 <div>
+                     <label for="sku">Street</label>
+                     <input type="text" id="sku" name="street" required placeholder="Street">
+                 </div>
+                 <div>
+                     <label for="barcode">Street Number</label>
+                     <input type="text" id="barcode" name="streetNumber" required placeholder="0123-4567">
+                 </div>
+             </div>
+
+             <div class="half-row">
+                 <div>
+                     <label for="sku">Postal Code</label>
+                     <input type="text" id="sku" name="postalCode" required placeholder="0123-4567">
+                 </div>
+                 <div>
+                     <label for="barcode">Floor</label>
+                     <input type="text" id="barcode" name="floor" required placeholder="0123-4567">
+                 </div>
+             </div>
+
+
+        <div class="row">
+
+                 <div>
+                     <label for="price">PhoneNumber</label>
+                     <input type="text" id="price" name="phonenumber" required placeholder="0123-4567">
+                 </div>
+             </div>
+
+             <div class="row">
+
+              <div>
+                  <label for="city">City</label>
+                  <input type="text" id="city" name="city" required placeholder="Thessaloniki etc.">
+              </div>
+          </div>
+
+
+             <button type="submit" class="button">Add Address</button>
+         </form>
+     </div>
+
+
+  </div><!-- root div -->
+
+</body>
+
+</html>

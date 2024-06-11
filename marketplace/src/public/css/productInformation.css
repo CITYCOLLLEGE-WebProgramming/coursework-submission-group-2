@@ -1,0 +1,263 @@
+body::-webkit-scrollbar {
+	width: 10px; /* Adjust the width of the scrollbar */
+}
+
+body::-webkit-scrollbar-track {
+	-webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3); /* Shadow inside the track */
+	border-radius: 10px; /* Optional: Rounded corners of the track */
+	background: transparent; /* Color of the scrollbar track */
+}
+
+body::-webkit-scrollbar-thumb {
+	background: linear-gradient(to top, #8843f4, hwb(252 3% 43%)); /* Gradient color for the scrollbar */
+	border-radius: 10px; /* Rounded corners of the scrollbar */
+}
+
+body::-webkit-scrollbar-thumb:hover {
+	background: linear-gradient(to top, #6622cc, #32c8b8); /* Darker gradient color on hover */
+}
+
+.root {
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background: #9053c7;
+	background: -webkit-linear-gradient(-135deg, #c850c0, #4158d0);
+	background: -o-linear-gradient(-135deg, #c850c0, #4158d0);
+	background: -moz-linear-gradient(-135deg, #c850c0, #4158d0);
+	background: linear-gradient(-135deg, #c850c0, #4158d0);
+	display: flex;     /* Example to layout children, adjust as needed */
+	justify-content: center;     /* Center children horizontally */
+	overflow: auto;     /* Allows scrolling inside .root if content overflows */
+	position: relative;     /* or 'fixed' depending on your layout needs */
+	z-index: 1;
+	margin-top: 3.37%;
+	align-items: stretch;     /* This will ensure they align to the same height automatically */
+}
+
+.productContainer {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-between;
+	height: 90%;     /* Add or adjust this line */
+	width: 90%;
+	margin: 20px auto;
+	padding: 20px;
+	background: #fff;
+	border-radius: 8px;
+	box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px, rgb(51, 51, 51) 0px 0px 0px 3px;
+}
+
+.product-title {
+	flex-basis: 100%;
+	text-align: center;
+	font-size: 28px;
+	font-weight: bold;
+	margin-bottom: 20px;
+}
+
+.product-info {
+	overflow: auto;
+	text-align: justify;
+	height: 300px;
+	margin-right: 12px;
+	flex-basis: 35%;
+	border: 2px solid black;
+	padding: 20px;
+	background-color: #f9f9f9;
+	border-radius: 8px;
+	margin-bottom: 20px;
+}
+
+.price {
+	flex-basis: 100%;
+	text-align: center;
+	font-size: 22px;
+	margin: 10px 0;
+}
+
+.cart {
+	flex-basis: 100%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.cart button {
+	padding: 10px 20px;
+	margin-right: 10px;
+	font-size: 16px;
+	background: linear-gradient(45deg, #6a11cb, #d13aab);
+	color: white;
+	border: none;
+	border-radius: 4px;
+	cursor: pointer;
+	transition: background-color 0.3s ease;
+}
+
+.cart button:hover {
+	background: linear-gradient(45deg, #d13aab, #6a11cb);
+}
+
+.cart button.clicked {
+	background: black;
+}
+
+.cart input {
+	width: 50px;
+	padding: 10px;
+	text-align: center;
+	font-size: 16px;
+	border: 1px solid #ddd;
+	border-radius:4px;
+}
+
+.reviews {
+	flex-basis: 100%;
+	margin-top: 20px;
+}
+
+.review {
+	border: 1px solid #ddd;
+	padding: 15px;
+	background-color: #f9f9f9;
+	border-radius: 8px;
+	margin-bottom: 20px;
+}
+
+.review h4 {
+	margin: 0;
+	font-size: 18px;
+}
+
+.review p {
+	margin: 10px 0;
+	line-height: 1.5;
+}
+
+.review img {
+	max-width: 100px;
+	margin-right: 10px;
+}
+
+.review .images {
+	display: flex;
+	justify-content: flex-start;
+	align-items: center;
+}
+
+.review .rating {
+	color: #ffa500;
+}
+
+.review .meta {
+	font-size: 14px;
+	color: #555;
+}
+
+.review .meta span {
+	margin-right: 15px;
+}
+
+.styled-input {
+  padding: 5px 10px; /* Adjust padding for inside space */
+  margin: 10px;  /* Adjust margin for outside space */
+  border-radius: 10px; /* Rounded corners */
+  border: 1px solid #ddd; /* Light border color */
+  font-size: 18px; /* Adjust font size */
+  width: 70px; /* Set a specific width */
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+  text-align: center; /* Center align the text */
+  transition: box-shadow 0.3s ease-in-out, border-color 0.3s ease-in-out; /* Smooth transition for focus */
+}
+
+.styled-input:focus {
+  outline: none; /* Remove default outline */
+  border-color: #007BFF; /* Change border color on focus */
+  box-shadow: 0 0 5px rgba(0, 123, 255, 0.5); /* Add a blue shadow on focus */
+}
+
+
+@media (max-width: 768px) {
+	.product-info{
+
+		flex-basis: 100%;
+
+	}
+
+	.picture{
+		flex-basis: 100%;
+		margin-left:0;
+	}
+
+}
+.picture {
+    flex-basis: 60%;
+    border: 2px solid black;
+    height: 300px;
+    background-color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 20px;
+    margin-left: 12px;
+    border-radius: 8px;
+    overflow: hidden; /* Ensure the image does not overflow the container */
+    position: relative;
+}
+
+.picture img {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: cover;
+    cursor: pointer;
+}
+
+/* Modal Styles */
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1000; /* Sit on top */
+    padding-top: 100px; /* Location of the box */
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.9); /* Black w/ opacity */
+}
+
+.modal-content {
+    margin: auto;
+    display: block;
+    width: 80%;
+    max-width: 700px;
+}
+
+.modal-content, #caption {
+    animation-name: zoom;
+    animation-duration: 0.6s;
+}
+
+@keyframes zoom {
+    from {transform: scale(0)}
+    to {transform: scale(1)}
+}
+
+.close {
+    position: absolute;
+    top: 15px;
+    right: 35px;
+    color: #f1f1f1;
+    font-size: 40px;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+.close:hover,
+.close:focus {
+    color: #bbb;
+    text-decoration: none;
+    cursor: pointer;
+}

@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/addProduct.css">
+    <link rel="stylesheet" href="css/navigation.css">
+    <link rel="stylesheet" href="css/footer.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="/public/fonts/font-awesome-4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+
+</head>
+
+<body>
+
+  <nav>
+    <a href="/companyHomePage">
+      <div class="brand-text">
+        <img src="/images/logo.png" alt="Logo">
+        <p id="logoTitle">SCRIPT SELLER</p>
+      </div>
+    </a>
+
+    <div class="search-container">
+      <form id="searchForm" action="/companyHomePage" method="get">
+        <button id="icon" type="submit"><i class="fa fa-search"></i></button>
+        <input type="text" name="search" placeholder="Search for products...">
+      </form>
+    </div>
+
+    <div class="icon-buttons">
+      <a href="/addProduct">
+        <div class="addProduct">
+          Add Product <i class="fas fa-plus"></i>
+        </div>
+      </a>
+      <a href="/companyProfile"><button><i class="fas fa-user"></i></button></a> <!-- Profile icon -->
+    </div>
+  </nav>
+
+<div class="root">
+    <div class="containeraprod">
+        <h1>Add Product</h1>
+        <form action="/addProduct" method="POST" enctype="multipart/form-data">
+            <label for="productName">Product Name</label>
+            <input type="text" id="productName" name="productName" required placeholder="Enter product name">
+
+            <div class="half-row">
+                <div>
+                    <label for="quantity">Quantity</label>
+                    <input type="number" id="quantity" name="quantity" required placeholder="1">
+                </div>
+                <div>
+                    <label for="barcode">Barcode</label>
+                    <input type="text" id="barcode" name="barcode" required placeholder="0123-4567">
+                </div>
+            </div>
+
+            <div class="row">
+                <div>
+                    <label for="category">Choose Category</label>
+                    <select id="category" name="category" required>
+                        <option value="">Select a category</option>
+                        <option value="homeGarden">Home garden</option>
+                        <option value="electronics">Electronics</option>
+                        <option value="fashion">Fashion</option>
+                        <option value="health">Health</option>
+                        <option value="babyKid">Baby & Kid</option>
+                        <option value="books">Books</option>
+                    </select>
+                </div>
+                <div>
+                    <label for="price">Price $</label>
+                    <input type="number" id="price" name="price" step="0.01" required placeholder="Enter price">
+                </div>
+            </div>
+
+            <label for="description">Description</label>
+            <textarea id="description" type="text" name="description" placeholder="Enter product description"></textarea>
+
+            <div>
+                <label for="productImage">Product Image:</label>
+                <input type="file" id="productImage" name="productImage" accept="image/*">
+            </div>
+
+            <button type="submit" class="button">Add Product</button>
+        </form>
+    </div>
+</div><!-- root div -->
+
+
+
+</body>
+
+</html>

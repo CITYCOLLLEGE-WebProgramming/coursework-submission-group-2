@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>SCRIPT SELLERS</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/navigation.css">
+    <link rel="stylesheet" href="/css/footer.css">
+    <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo192.png">
+    <link rel="manifest" href="%PUBLIC_URL%/manifest.json">
+    <link rel="stylesheet" href="/css/cart.css">
+    <link rel="stylesheet" type="text/css" href="/public/fonts/font-awesome-4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <style>
+        .image-container {
+            width: 100%;
+            height: 200px; /* Set the desired height */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden; /* Hide overflow to maintain size */
+        }
+        .product-box img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover; /* Maintain aspect ratio and cover the area */
+        }
+        
+    </style>
+</head>
+<body>
+    <nav>
+        <a href="/HomePage">
+            <div class="brand-text">
+                <img src="/images/logo.png" alt="Logo">
+                <p id="logoTitle">SCRIPT SELLER</p>
+            </div>
+        </a>
+        <div class="search-container">
+            <form id="searchForm" action="/HomePage" method="get">
+                <button id="icon" type="submit"><i class="fa fa-search"></i></button>
+                <input type="text" name="search" placeholder="Search...">
+            </form>
+        </div>
+        <div class="icon-buttons">
+            <a href="/userProfile"><button><i class="fas fa-user"></i></button></a> <!-- Profile icon -->
+            <a href="/cart"><button><i class="fas fa-shopping-cart"></i></button></a> <!-- Shopping cart icon -->
+            <a href="/userFavorite"><button><i class="fas fa-heart"></i></button></a> <!-- Heart icon -->
+        </div>
+    </nav>
+
+    <div class="root">
+        <div class="cartContent">
+            <h3 class="cartheadtext">Your Cart</h3>
+            <div class="productlist">
+                <% if (cart.length > 0) { %>
+                    <% cart.forEach(item => { %>
+                        <div class="product-box">
+                            <div class="image-container">
+                                <% if (item.product.Image) { %>
+                                    <img src="/productImage/<%= item.product._id %>" alt="<%= item.product.ProductName %>" class="product-image">
+                                <% } else { %>
+                                    <img src="/path/to/default-image.png" alt="Default Image" class="product-image">
+                                <% } %>
+                            </div>
+                            <h3><a id="productLink" href="/productInformation?id=<%= item.product._id %>"><%= item.product.ProductName %></a></h3>
+                            <p>Price: $<%= item.product.Price %></p>
+                            <div class="product-actions">
+                                <form action="/removeFromCart" method="post">
+                                    <input type="hidden" name="productId" value="<%= item.product._id %>">
+                                    <button type="submit" class="CartBtncrtpg">Remove from Cart</button>
+                                </form>
+                            </div>
+                            <p>Quantity: <%= item.quantity %></p>
+                        </div>
+                    <% }) %>
+                </div> <!-- productlist -->
+                <div class="reactivebuttonsdiv">
+                <div class="textForm">
+                    <h3>Total Amount: $<%= totalAmount %></h3>
+                    <form action="/checkout" method="post">
+                        <button class="buttonC" type="submit">Clear Cart</button>
+                    </form>
+                  </div>
+                </div>
+                <div class="reactivebuttonsdiv">
+                <div class="purchase-button">
+                 <form action="/purchase" method="get">
+                     <button class="buttonP" type="submit">Purchase Cart</button>
+                    </form>
+                    </div>
+                  </div>
+
+                <% } else { %>
+                    <p>Your cart is empty</p>
+                <% } %>
+            </div> <!-- cart container -->
+        </div> <!-- root -->
+    </div>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="row">
+                <div class="footer-col">
+                    <h4>company</h4>
+                    <ul>
+                        <li><a href="/aboutUs">about us</a></li>
+                        <li><a href="/ourServices">our services</a></li>
+                        <li><a href="/policy">privacy policy</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>get help</h4>
+                    <ul>
+                        <li><a href="/helpCenter">FAQ</a></li>
+                        <li><a href="/chatSupport">Chat Support</a></li>
+                        <li><a href="/userOrderHistory">Your Order</a></li>
+                        <li><a href="/userWallet">payment options</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Script-Sellers Payment</h4>
+                    <ul>
+                        <li><a href="/businessCard">Script-Sellers Business Card</a></li>
+                        <li><a href="/productInformation">Your Wallet</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>follow us</h4>
+                    <div class="social-links">
+                        <a href="https://www.facebook.com"><i class="fab fa-facebook-f"></i></a>
+                        <a href="https://twitter.com"><i class="fab fa-twitter"></i></a>
+                        <a href="https://instagram.com"><i class="fab fa-instagram"></i></a>
+                        <a href="https://www.linkedin.com"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

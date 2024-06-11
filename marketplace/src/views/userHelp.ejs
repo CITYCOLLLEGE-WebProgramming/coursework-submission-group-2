@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" type="text/css" href="/css/help.css">
+  <link rel="stylesheet" href="/css/navigation.css">
+  <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" type="text/css" href="/public/fonts/font-awesome-4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+  <title>Help</title>
+</head>
+
+<body>
+  <% if (isCompanyUser) { %>
+    <nav>
+      <a href="/companyHomePage">
+        <div class="brand-text">
+          <img src="/images/logo.png" alt="Logo">
+          <p id="logoTitle">SCRIPT SELLER</p>
+        </div>
+      </a>
+
+      <div class="search-container">
+        <form id="searchForm" action="/companyHomePage" method="get">
+          <button id="icon" type="submit"><i class="fa fa-search"></i></button>
+          <input type="text" name="search" placeholder="Search...">
+        </form>
+      </div>
+
+      <div class="icon-buttons">
+        <a href="/addProduct">
+          <div class="addProduct">
+            Add Product <i class="fas fa-plus"></i>
+          </div>
+        </a>
+        <a href="/companyProfile"><button><i class="fas fa-user"></i></button></a> <!-- Profile icon -->
+      </div>
+    </nav>
+  <% } else { %>
+    <nav>
+      <a href="/HomePage">
+        <div class="brand-text">
+          <img src="/images/logo.png" alt="Logo">
+          <p id="logoTitle">SCRIPT SELLER</p>
+        </div>
+      </a>
+
+      <div class="search-container">
+        <form id="searchForm" action="/HomePage" method="get">
+          <button id="icon" type="submit"><i class="fa fa-search"></i></button>
+          <input type="text" name="search" placeholder="Search...">
+        </form>
+      </div>
+
+      <div class="icon-buttons">
+        <a href="/userProfile"><button><i class="fas fa-user"></i></button></a> <!-- Profile icon -->
+        <a href="/cart"><button><i class="fas fa-shopping-cart"></i></button></a> <!-- Shopping cart icon -->
+        <a href="/userFavorite"><button><i class="fas fa-heart"></i></button></a> <!-- Heart icon -->
+      </div>
+    </nav>
+  <% } %>
+
+  <div class="root">
+    <!-- LEFT DIV -->
+    <% if (isCompanyUser) { %>
+      <div class="dashboard">
+        <ul class="no-bullets">
+        <li><a href="/companyProfile"><i class="fa fa-user" aria-hidden="true"></i> My account</a></li>
+          <li><a href="/sellingProducts"> <i class="fa fa-university" aria-hidden="true"></i>Listed Products</a></li>
+          <li><a href="/soldProducts"> <i class="fa fa-history" aria-hidden="true"></i>Sold Product History</a></li>
+          <li><a href="/userHelp"> <i class="fa fa-info" aria-hidden="true"></i> Help</a></li>
+          <li><a href="/settings"><i class="fa fa-cog" aria-hidden="true"></i> Settings</a></li>
+          <li><a href="/logout"> <i class="fa fa-lock"></i>Logout</a></li>
+        </ul>
+      </div>
+    <% } else { %>
+      <div class="dashboard">
+        <ul class="no-bullets">
+          <li><a href="/userProfile"><i class="fa fa-user" aria-hidden="true"></i> My account</a></li>
+          <li><a href="/userWallet"> <i class="fa fa-university" aria-hidden="true"></i> Wallet</a></li>
+          <li><a href="/userOrderHistory"> <i class="fa fa-history" aria-hidden="true"></i> Order History</a></li>
+          <li><a href="/userHelp"> <i class="fa fa-info" aria-hidden="true"></i> Help</a></li>
+          <li><a href="/settings"><i class="fa fa-cog" aria-hidden="true"></i> Settings</a></li>
+          <li><a href="/login"> <i class="fa fa-lock"></i>Logout</a></li>
+        </ul>
+      </div>
+    <% } %>
+
+    <!-- RIGHT DIV -->
+    <div class="userContent">
+      <div class="container">
+        <h2>Help me with my order:</h2>
+        <div class="help-container">
+          <!-- CARD HELP -->
+          <div class="help-card">
+            <h3>Find answers in the Help Center</h3>
+            <p>See questions & answers for whatever you're looking for about your purchase, gathered in the ScriptSeller cart help
+              center!</p>
+            <a href="/helpCenter" class="help-link">See questions & answers <i class="fas fa-chevron-right"></i></a>
+          </div>
+
+          <!-- CHAT CARD -->
+          <div class="chat-card">
+            <h3>Talk to us in the chat</h3>
+            <p>Do you like to chat? Chat with us to get some help!</p>
+            <a href="/chatSupport" class="chat-link">Chat with us <i class="fas fa-chevron-right"></i></a>
+          </div>
+
+          <!-- SEND QUESTION -->
+          <div class="question-card">
+            <h3>Send us a question</h3>
+            <p>Do you have a specific question? Fill out the form and we will contact you by email before you can say
+              ScriptSeller!</p>
+          </div>
+        </div> <!-- help container div -->
+      </div> <!-- container DIV -->
+    </div> <!-- userContent DIV -->
+  </div> <!--ROOT DIV -->
+</body>
+
+</html>
