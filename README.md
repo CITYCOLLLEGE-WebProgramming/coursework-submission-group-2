@@ -1,4 +1,5 @@
-In order to run the code you need to cd ....\coursework-submission-group-2\marketplace\src and then just type node server.js
+In order to run the code you need to cd ....\coursework-submission-group-2\marketplace\src 
+type npm install and then just type node server.js
 
 All the Database in open access in order in case if you run it you can have access
 
